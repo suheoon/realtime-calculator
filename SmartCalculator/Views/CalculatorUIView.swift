@@ -30,9 +30,16 @@ final class CalculatorUIView: UIView {
         self.backgroundColor = .systemBackground
         for i in 0..<4 {
             for j in 0..<4 {
-                let button = UIButton()
+                let button = UIButton(type: .custom)
                 button.translatesAutoresizingMaskIntoConstraints = false
-                button.setTitle(title[i][j], for: .normal)
+                if i == 3 && j == 2 {
+                    let image = UIImage(systemName: "delete.left")?.withRenderingMode(.alwaysTemplate)
+                    button.setImage(image,for: .normal)
+                    button.imageView?.tintColor = .label
+                }
+                else {
+                    button.setTitle(title[i][j], for: .normal)
+                }
                 button.setTitleColor(.label, for: .normal)
                 buttonArr[i][j] = button
                 addSubview(button)
