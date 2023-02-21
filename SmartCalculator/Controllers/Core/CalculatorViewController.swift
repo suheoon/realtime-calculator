@@ -9,7 +9,7 @@ import UIKit
 
 final class CalculatorViewController: UIViewController {
     
-    private lazy var calculatorView = CalculatorUIView()
+    private lazy var calculatorView = CalculatorUIStackView(frame: .zero)
     var buttonHeight: CGFloat?
     
     override func viewDidLoad() {
@@ -20,7 +20,7 @@ final class CalculatorViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        configureLayout()
+                configureLayout()
     }
     
     private func configureLayout() {
@@ -30,11 +30,7 @@ final class CalculatorViewController: UIViewController {
             calculatorView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             calculatorView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             calculatorView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            calculatorView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
         ]
-        
         NSLayoutConstraint.activate(calculatorViewConstraints)
-    }
-    
-    
+    }    
 }

@@ -17,7 +17,7 @@
 		745004B229A49C0C00945D22 /* CalculatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745004B129A49C0C00945D22 /* CalculatorViewController.swift */; };
 		745004B429A49C5500945D22 /* ExchangeRateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745004B329A49C5500945D22 /* ExchangeRateViewController.swift */; };
 		745004B829A49F6C00945D22 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745004B729A49F6C00945D22 /* UIImageExtension.swift */; };
-		745004BA29A4B10500945D22 /* CalculatorUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745004B929A4B10500945D22 /* CalculatorUIView.swift */; };
+		745004BA29A4B10500945D22 /* CalculatorUIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745004B929A4B10500945D22 /* CalculatorUIStackView.swift */; };
 		745004BC29A4D74000945D22 /* UITabBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745004BB29A4D74000945D22 /* UITabBarExtension.swift */; };
 /* End PBXBuildFile section */
 
@@ -34,7 +34,7 @@
 		745004B129A49C0C00945D22 /* CalculatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorViewController.swift; sourceTree = "<group>"; };
 		745004B329A49C5500945D22 /* ExchangeRateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateViewController.swift; sourceTree = "<group>"; };
 		745004B729A49F6C00945D22 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
-		745004B929A4B10500945D22 /* CalculatorUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorUIView.swift; sourceTree = "<group>"; };
+		745004B929A4B10500945D22 /* CalculatorUIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorUIStackView.swift; sourceTree = "<group>"; };
 		745004BB29A4D74000945D22 /* UITabBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITabBarExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -93,7 +93,7 @@
 		745004AE29A49A3800945D22 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				745004B929A4B10500945D22 /* CalculatorUIView.swift */,
+				745004B929A4B10500945D22 /* CalculatorUIStackView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -208,7 +208,7 @@
 				7450049F29A4995E00945D22 /* SmartCalculator.xcdatamodeld in Sources */,
 				7450049529A4995E00945D22 /* AppDelegate.swift in Sources */,
 				745004AC29A49A0A00945D22 /* TabBarViewController.swift in Sources */,
-				745004BA29A4B10500945D22 /* CalculatorUIView.swift in Sources */,
+				745004BA29A4B10500945D22 /* CalculatorUIStackView.swift in Sources */,
 				745004B229A49C0C00945D22 /* CalculatorViewController.swift in Sources */,
 				745004BC29A4D74000945D22 /* UITabBarExtension.swift in Sources */,
 				7450049729A4995E00945D22 /* SceneDelegate.swift in Sources */,
