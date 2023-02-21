@@ -7,13 +7,34 @@
 
 import UIKit
 
-class CalculatorViewController: UIViewController {
-
+final class CalculatorViewController: UIViewController {
+    
+    private lazy var calculatorView = CalculatorUIView()
+    var buttonHeight: CGFloat?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
+        view.backgroundColor = .systemBackground
+        view.addSubview(calculatorView)
     }
     
-
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        configureLayout()
+    }
+    
+    private func configureLayout() {
+        calculatorView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let calculatorViewConstraints  = [
+            calculatorView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            calculatorView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            calculatorView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            calculatorView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+        ]
+        
+        NSLayoutConstraint.activate(calculatorViewConstraints)
+    }
+    
+    
 }

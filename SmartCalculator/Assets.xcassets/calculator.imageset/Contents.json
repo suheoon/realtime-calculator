@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "calculator 1.png",
+      "filename" : "calculator.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "calculator.png",
+      "filename" : "calculator 1.svg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "calculator 2.png",
+      "filename" : "calculator 2.svg",
       "idiom" : "universal",
       "scale" : "3x"
     }

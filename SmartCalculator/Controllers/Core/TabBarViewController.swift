@@ -11,30 +11,26 @@ final class TabBarViewController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupStyle()
         
         let vc1 = UINavigationController(rootViewController: CalculatorViewController())
         let vc2 = UINavigationController(rootViewController: ExchangeRateViewController())
         
-        vc1.tabBarItem.image = UIImage(named: "calculator")?.resizeImage(targetSize: CGSize(width: 25 , height: 25))
-        vc2.tabBarItem.image = UIImage(named: "exchange-rate")?.resizeImage(targetSize: CGSize(width: 25, height: 25))
+        vc1.tabBarItem.image = UIImage(named: "calculator")?.resize(targetSize: CGSize(width: 20 , height: 20))
+        vc2.tabBarItem.image = UIImage(named: "exchange-rate")?.resize(targetSize: CGSize(width: 25, height: 25))
         
         vc1.tabBarItem.title = "계산기"
         vc2.tabBarItem.title = "환율"
         
         tabBar.tintColor = .label
+        tabBar.backgroundColor = .systemBackground
         
         setViewControllers([vc1, vc2], animated: true)
     }
     
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    private func setupStyle() {
+        UITabBar.clearShadow()
+        tabBar.layer.applyShadow(color: .gray, alpha: 0.3, x: 0, y: 0, blur: 10)
+    }
     
 }
