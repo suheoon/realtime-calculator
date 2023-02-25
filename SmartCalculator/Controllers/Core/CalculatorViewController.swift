@@ -16,6 +16,8 @@ final class CalculatorViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         view.addSubview(calculatorView)
+        
+        configureNavBar()
     }
     
     override func viewDidLayoutSubviews() {
@@ -33,5 +35,12 @@ final class CalculatorViewController: UIViewController {
             calculatorView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ]
         NSLayoutConstraint.activate(calculatorViewConstraints)
+    }
+    
+    private func configureNavBar() {
+        let label = UILabel()
+        label.textColor = UIColor.label
+        label.text = "환율 계산기"
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: label)
     }
 }

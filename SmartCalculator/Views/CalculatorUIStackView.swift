@@ -77,11 +77,7 @@ final class CalculatorUIStackView: UIStackView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.translatesAutoresizingMaskIntoConstraints = false
-        self.distribution = .fillEqually
-        self.alignment = .center
-        self.spacing = 0
-        self.axis = .vertical
+        configureStackView()
         configureFromDisplayUI()
         configureToDisplayUI()
         configureButtonUI()
@@ -90,7 +86,15 @@ final class CalculatorUIStackView: UIStackView {
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-        
+    
+    private func configureStackView() {
+        self.translatesAutoresizingMaskIntoConstraints = false
+        self.distribution = .fillEqually
+        self.alignment = .center
+        self.spacing = 0
+        self.axis = .vertical
+    }
+    
     private func configureButtonUI() {
         let title1 = ["0", ".", "C", "+"]
         let title2 = ["1", "2", "3", "-"]
@@ -147,7 +151,7 @@ final class CalculatorUIStackView: UIStackView {
                 button.setTitle(title1[i], for: .normal)
                 button.setTitleColor(.label, for: .normal)
             }
-//            button.addTarget(self, action: <#T##Selector#>, for: .touchUpInside)
+            //            button.addTarget(self, action: <#T##Selector#>, for: .touchUpInside)
             
             button.translatesAutoresizingMaskIntoConstraints = false
             button.widthAnchor.constraint(equalToConstant: screenWidth / 4).isActive = true
@@ -196,7 +200,7 @@ final class CalculatorUIStackView: UIStackView {
             stackView.translatesAutoresizingMaskIntoConstraints = false
             stackView.axis = .horizontal
             stackView.spacing = 0
-            stackView.distribution = .fill
+            stackView.distribution = .fillProportionally
             
             return stackView
         }()
@@ -208,6 +212,7 @@ final class CalculatorUIStackView: UIStackView {
             view.addBorder(.top, color: .gray, thickness: 0.3)
             view.addBorder(.right, color: .gray, thickness: 0.3)
             view.addBorder(.bottom, color: .gray, thickness: 0.3)
+            view.addBorder(.left, color: .gray, thickness: 0.3)
             
             let horizonalStacVeiw: UIStackView = {
                 let stackView = UIStackView()
@@ -224,7 +229,7 @@ final class CalculatorUIStackView: UIStackView {
             
             view.addSubview(horizonalStacVeiw)
             
-            view.widthAnchor.constraint(equalToConstant: screenWidth / 4).isActive = true
+            view.widthAnchor.constraint(equalToConstant: screenWidth / 4 - 5).isActive = true
             horizonalStacVeiw.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
             horizonalStacVeiw.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
             
@@ -237,9 +242,10 @@ final class CalculatorUIStackView: UIStackView {
             view.backgroundColor = .systemBackground
             view.addBorder(.top, color: .gray, thickness: 0.3)
             view.addBorder(.bottom, color: .gray, thickness: 0.3)
+            view.addBorder(.right, color: .gray, thickness: 0.3)
             view.addSubview(fromResultLabel)
             
-            view.widthAnchor.constraint(equalToConstant: screenWidth / 4 * 3).isActive = true
+            view.widthAnchor.constraint(equalToConstant: screenWidth / 4 * 3 - 5).isActive = true
             fromResultLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
             fromResultLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20).isActive = true
             fromResultLabel.widthAnchor.constraint(equalToConstant: screenWidth / 4 * 3 - 40).isActive = true
@@ -270,6 +276,7 @@ final class CalculatorUIStackView: UIStackView {
             view.backgroundColor = .systemBackground
             view.addBorder(.right, color: .gray, thickness: 0.3)
             view.addBorder(.bottom, color: .gray, thickness: 0.5)
+            view.addBorder(.left, color: .gray, thickness: 0.3)
             
             let horizonalStacVeiw: UIStackView = {
                 let stackView = UIStackView()
@@ -286,7 +293,7 @@ final class CalculatorUIStackView: UIStackView {
             
             view.addSubview(horizonalStacVeiw)
             
-            view.widthAnchor.constraint(equalToConstant: screenWidth / 4).isActive = true
+            view.widthAnchor.constraint(equalToConstant: screenWidth / 4 - 5).isActive = true
             horizonalStacVeiw.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
             horizonalStacVeiw.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
             
@@ -296,11 +303,12 @@ final class CalculatorUIStackView: UIStackView {
         let view2: UIView = {
             let view = UIView()
             view.addBorder(.bottom, color: .gray, thickness: 0.5)
+            view.addBorder(.right, color: .gray, thickness: 0.5)
             view.translatesAutoresizingMaskIntoConstraints = false
-                        
+            
             view.addSubview(toResultLabel)
             
-            view.widthAnchor.constraint(equalToConstant: screenWidth / 4 * 3).isActive = true
+            view.widthAnchor.constraint(equalToConstant: screenWidth / 4 * 3 -  5).isActive = true
             toResultLabel.widthAnchor.constraint(equalToConstant: screenWidth / 4 * 3 - 40).isActive = true
             toResultLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
             toResultLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20).isActive = true
@@ -312,6 +320,6 @@ final class CalculatorUIStackView: UIStackView {
         horizonalStacVeiw.addArrangedSubview(view2)
         self.addArrangedSubview(horizonalStacVeiw)
     }
-
+    
     
 }
