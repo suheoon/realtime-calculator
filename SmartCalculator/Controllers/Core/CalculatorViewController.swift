@@ -30,7 +30,7 @@ final class CalculatorViewController: UIViewController {
 
         let calculatorViewConstraints  = [
             calculatorView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            calculatorView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            calculatorView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 18),
             calculatorView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             calculatorView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ]
