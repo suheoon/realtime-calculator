@@ -19,6 +19,8 @@
 		745004B829A49F6C00945D22 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745004B729A49F6C00945D22 /* UIImageExtension.swift */; };
 		745004BA29A4B10500945D22 /* CalculatorUIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745004B929A4B10500945D22 /* CalculatorUIStackView.swift */; };
 		745004BC29A4D74000945D22 /* UITabBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745004BB29A4D74000945D22 /* UITabBarExtension.swift */; };
+		7472CB6929AA15D70097DBFC /* CALayerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7472CB6829AA15D70097DBFC /* CALayerExtension.swift */; };
+		7472CB6B29AA1BEE0097DBFC /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7472CB6A29AA1BEE0097DBFC /* UIViewExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		745004B729A49F6C00945D22 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		745004B929A4B10500945D22 /* CalculatorUIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorUIStackView.swift; sourceTree = "<group>"; };
 		745004BB29A4D74000945D22 /* UITabBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITabBarExtension.swift; sourceTree = "<group>"; };
+		7472CB6829AA15D70097DBFC /* CALayerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayerExtension.swift; sourceTree = "<group>"; };
+		7472CB6A29AA1BEE0097DBFC /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +133,8 @@
 			children = (
 				745004B729A49F6C00945D22 /* UIImageExtension.swift */,
 				745004BB29A4D74000945D22 /* UITabBarExtension.swift */,
+				7472CB6829AA15D70097DBFC /* CALayerExtension.swift */,
+				7472CB6A29AA1BEE0097DBFC /* UIViewExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -209,10 +215,12 @@
 				7450049529A4995E00945D22 /* AppDelegate.swift in Sources */,
 				745004AC29A49A0A00945D22 /* TabBarViewController.swift in Sources */,
 				745004BA29A4B10500945D22 /* CalculatorUIStackView.swift in Sources */,
+				7472CB6B29AA1BEE0097DBFC /* UIViewExtension.swift in Sources */,
 				745004B229A49C0C00945D22 /* CalculatorViewController.swift in Sources */,
 				745004BC29A4D74000945D22 /* UITabBarExtension.swift in Sources */,
 				7450049729A4995E00945D22 /* SceneDelegate.swift in Sources */,
 				745004B829A49F6C00945D22 /* UIImageExtension.swift in Sources */,
+				7472CB6929AA15D70097DBFC /* CALayerExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

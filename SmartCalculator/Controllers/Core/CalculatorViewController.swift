@@ -20,17 +20,18 @@ final class CalculatorViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-                configureLayout()
+        configureLayout()
     }
     
     private func configureLayout() {
         calculatorView.translatesAutoresizingMaskIntoConstraints = false
-        
+
         let calculatorViewConstraints  = [
-            calculatorView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            calculatorView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            calculatorView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            calculatorView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            calculatorView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             calculatorView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ]
         NSLayoutConstraint.activate(calculatorViewConstraints)
-    }    
+    }
 }
