@@ -77,7 +77,7 @@ final class CalculatorUIStackView: UIStackView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configureStackView()
+        configureUIStackView()
         configureFromDisplayUI()
         configureToDisplayUI()
         configureButtonUI()
@@ -87,7 +87,7 @@ final class CalculatorUIStackView: UIStackView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func configureStackView() {
+    private func configureUIStackView() {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.distribution = .fillEqually
         self.alignment = .center
