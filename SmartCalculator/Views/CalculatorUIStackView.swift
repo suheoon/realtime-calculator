@@ -7,11 +7,20 @@
 
 import UIKit
 
+enum CalculatorButtonType: Int {
+    case zero, dot, delete, plus
+    case one, two, three, minus
+    case four, five, six, divide
+    case seven, eight, nine, multiply
+}
+
 final class CalculatorUIStackView: UIStackView {
     
     let screenHight: CGFloat = UIScreen.main.bounds.height
     let screenWidth: CGFloat = UIScreen.main.bounds.width
-            
+    
+    var working: String = ""
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureUIStackView()
@@ -88,10 +97,10 @@ final class CalculatorUIStackView: UIStackView {
                 button.setTitle(title1[i], for: .normal)
                 button.setTitleColor(.label, for: .normal)
             }
-//            button.addTarget(self, action: #selector(test(_:)), for: .touchUpInside)
-            
+            button.tag = i
             button.translatesAutoresizingMaskIntoConstraints = false
             button.widthAnchor.constraint(equalToConstant: screenWidth / 4).isActive = true
+            button.addTarget(self, action: #selector(tapCalculatorButton(_:)), for: .touchUpInside)
             horizonalStacVeiw1.addArrangedSubview(button)
         }
         
@@ -99,9 +108,10 @@ final class CalculatorUIStackView: UIStackView {
             let button = UIButton(type: .custom)
             button.setTitle(title2[i], for: .normal)
             button.setTitleColor(.label, for: .normal)
-            
+            button.tag = i + 4
             button.translatesAutoresizingMaskIntoConstraints = false
             button.widthAnchor.constraint(equalToConstant: screenWidth / 4).isActive = true
+            button.addTarget(self, action: #selector(tapCalculatorButton(_:)), for: .touchUpInside)
             horizonalStacVeiw2.addArrangedSubview(button)
         }
         
@@ -109,9 +119,10 @@ final class CalculatorUIStackView: UIStackView {
             let button = UIButton(type: .custom)
             button.setTitle(title3[i], for: .normal)
             button.setTitleColor(.label, for: .normal)
-            
+            button.tag = i + 8
             button.translatesAutoresizingMaskIntoConstraints = false
             button.widthAnchor.constraint(equalToConstant: screenWidth / 4).isActive = true
+            button.addTarget(self, action: #selector(tapCalculatorButton(_:)), for: .touchUpInside)
             horizonalStacVeiw3.addArrangedSubview(button)
         }
         
@@ -119,9 +130,10 @@ final class CalculatorUIStackView: UIStackView {
             let button = UIButton(type: .custom)
             button.setTitle(title4[i], for: .normal)
             button.setTitleColor(.label, for: .normal)
-            
+            button.tag = i + 12
             button.translatesAutoresizingMaskIntoConstraints = false
             button.widthAnchor.constraint(equalToConstant: screenWidth / 4).isActive = true
+            button.addTarget(self, action: #selector(tapCalculatorButton(_:)), for: .touchUpInside)
             horizonalStacVeiw4.addArrangedSubview(button)
         }
         
@@ -148,7 +160,7 @@ final class CalculatorUIStackView: UIStackView {
             view.translatesAutoresizingMaskIntoConstraints = false
             view.backgroundColor = .systemBackground
             view.addBorder(.top, color: .gray, thickness: 0.3)
-//            view.addBorder(.right, color: .gray, thickness: 0.3)
+            //            view.addBorder(.right, color: .gray, thickness: 0.3)
             view.addBorder(.bottom, color: .gray, thickness: 0.3)
             view.addBorder(.left, color: .gray, thickness: 0.3)
             
@@ -161,7 +173,7 @@ final class CalculatorUIStackView: UIStackView {
                 
                 return stackView
             }()
-                        
+            
             // from 버튼
             let fromSelectButton: UIButton = {
                 let button = UIButton()
@@ -172,7 +184,7 @@ final class CalculatorUIStackView: UIStackView {
                 button.setTitleColor(.label, for: .normal)
                 button.setPreferredSymbolConfiguration(.init(pointSize: 13), forImageIn: .normal)
                 button.semanticContentAttribute = .forceRightToLeft
-//                button.addTarget(self, action: #selector(test(_:)), for: .touchUpInside)
+                //                button.addTarget(self, action: #selector(test(_:)), for: .touchUpInside)
                 return button
             }()
             
@@ -235,7 +247,7 @@ final class CalculatorUIStackView: UIStackView {
             let view = UIView()
             view.translatesAutoresizingMaskIntoConstraints = false
             view.backgroundColor = .systemBackground
-//            view.addBorder(.right, color: .gray, thickness: 0.3)
+            //            view.addBorder(.right, color: .gray, thickness: 0.3)
             view.addBorder(.bottom, color: .gray, thickness: 0.5)
             view.addBorder(.left, color: .gray, thickness: 0.3)
             
@@ -248,7 +260,7 @@ final class CalculatorUIStackView: UIStackView {
                 
                 return stackView
             }()
-                      
+            
             // to버튼
             let button: UIButton = {
                 let button = UIButton()
@@ -259,7 +271,7 @@ final class CalculatorUIStackView: UIStackView {
                 button.setTitleColor(.label, for: .normal)
                 button.setPreferredSymbolConfiguration(.init(pointSize: 13), forImageIn: .normal)
                 button.semanticContentAttribute = .forceRightToLeft
-//                button.addTarget(self, action: #selector(test(_:)), for: .touchUpInside)
+                //                button.addTarget(self, action: #selector(test(_:)), for: .touchUpInside)
                 return button
             }()
             
@@ -305,6 +317,45 @@ final class CalculatorUIStackView: UIStackView {
         horizonalStacVeiw.addArrangedSubview(view2)
         self.addArrangedSubview(horizonalStacVeiw)
     }
-        
     
+    @objc func tapCalculatorButton(_ sender: UIButton) {
+        let calculatorButtonType = CalculatorButtonType(rawValue: sender.tag)
+        
+        switch calculatorButtonType {
+        case .zero:
+            print(sender.tag)
+        case .dot:
+            print(sender.tag)
+        case .delete:
+            print(sender.tag)
+        case .plus:
+            print(sender.tag)
+        case .one:
+            print(sender.tag)
+        case .two:
+            print(sender.tag)
+        case .three:
+            print(sender.tag)
+        case .minus:
+            print(sender.tag)
+        case .four:
+            print(sender.tag)
+        case .five:
+            print(sender.tag)
+        case .six:
+            print(sender.tag)
+        case .divide:
+            print(sender.tag)
+        case .seven:
+            print(sender.tag)
+        case .eight:
+            print(sender.tag)
+        case .nine:
+            print(sender.tag)
+        case .multiply:
+            print(sender.tag)
+        default:
+            break
+        }
+    }
 }
