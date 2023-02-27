@@ -11,19 +11,7 @@ final class CalculatorUIStackView: UIStackView {
     
     let screenHight: CGFloat = UIScreen.main.bounds.height
     let screenWidth: CGFloat = UIScreen.main.bounds.width
-        
-    let toResultLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "0"
-        label.textColor = .label
-        label.textAlignment = .right
-        label.font = label.font.withSize(25)
-        
-        return label
-    }()
-    
-    
+            
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureUIStackView()
@@ -100,7 +88,7 @@ final class CalculatorUIStackView: UIStackView {
                 button.setTitle(title1[i], for: .normal)
                 button.setTitleColor(.label, for: .normal)
             }
-            button.addTarget(self, action: #selector(test(_:)), for: .touchUpInside)
+//            button.addTarget(self, action: #selector(test(_:)), for: .touchUpInside)
             
             button.translatesAutoresizingMaskIntoConstraints = false
             button.widthAnchor.constraint(equalToConstant: screenWidth / 4).isActive = true
@@ -292,12 +280,23 @@ final class CalculatorUIStackView: UIStackView {
             view.addBorder(.right, color: .gray, thickness: 0.5)
             view.translatesAutoresizingMaskIntoConstraints = false
             
-            view.addSubview(toResultLabel)
+            let label: UILabel = {
+                let label = UILabel()
+                label.translatesAutoresizingMaskIntoConstraints = false
+                label.text = "0"
+                label.textColor = .label
+                label.textAlignment = .right
+                label.font = label.font.withSize(25)
+                
+                return label
+            }()
+            
+            view.addSubview(label)
             
             view.widthAnchor.constraint(equalToConstant: screenWidth / 4 * 3).isActive = true
-            toResultLabel.widthAnchor.constraint(equalToConstant: screenWidth / 4 * 3 - 40).isActive = true
-            toResultLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
-            toResultLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20).isActive = true
+            label.widthAnchor.constraint(equalToConstant: screenWidth / 4 * 3 - 40).isActive = true
+            label.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
+            label.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20).isActive = true
             
             return view
         }()
@@ -306,10 +305,6 @@ final class CalculatorUIStackView: UIStackView {
         horizonalStacVeiw.addArrangedSubview(view2)
         self.addArrangedSubview(horizonalStacVeiw)
     }
-    
-    @objc func test(_ sender: UIButton) {
-        print("test")
-    }
-    
+        
     
 }
