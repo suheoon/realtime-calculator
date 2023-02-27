@@ -97,6 +97,7 @@ final class CalculatorUIStackView: UIStackView {
                 button.addGestureRecognizer(longPress)
             } else {
                 button.setTitle(title1[i], for: .normal)
+                button.titleLabel?.font = UIFont.Pretendard(.medium, size: 18)
                 button.setTitleColor(.label, for: .normal)
             }
             button.tag = i
@@ -110,6 +111,7 @@ final class CalculatorUIStackView: UIStackView {
             let button = UIButton(type: .custom)
             button.setTitle(title2[i], for: .normal)
             button.setTitleColor(.label, for: .normal)
+            button.titleLabel?.font = UIFont.Pretendard(.medium, size: 18)
             button.tag = i + 4
             button.translatesAutoresizingMaskIntoConstraints = false
             button.widthAnchor.constraint(equalToConstant: screenWidth / 4).isActive = true
@@ -121,6 +123,7 @@ final class CalculatorUIStackView: UIStackView {
             let button = UIButton(type: .custom)
             button.setTitle(title3[i], for: .normal)
             button.setTitleColor(.label, for: .normal)
+            button.titleLabel?.font = UIFont.Pretendard(.medium, size: 18)
             button.tag = i + 8
             button.translatesAutoresizingMaskIntoConstraints = false
             button.widthAnchor.constraint(equalToConstant: screenWidth / 4).isActive = true
@@ -132,6 +135,7 @@ final class CalculatorUIStackView: UIStackView {
             let button = UIButton(type: .custom)
             button.setTitle(title4[i], for: .normal)
             button.setTitleColor(.label, for: .normal)
+            button.titleLabel?.font = UIFont.Pretendard(.medium, size: 18)
             button.tag = i + 12
             button.translatesAutoresizingMaskIntoConstraints = false
             button.widthAnchor.constraint(equalToConstant: screenWidth / 4).isActive = true
@@ -163,7 +167,6 @@ final class CalculatorUIStackView: UIStackView {
             view.backgroundColor = .systemBackground
             view.addBorder(.top, color: .gray, thickness: 0.3)
             view.addBorder(.bottom, color: .gray, thickness: 0.3)
-            view.addBorder(.left, color: .gray, thickness: 0.3)
             
             let horizonalStacVeiw: UIStackView = {
                 let stackView = UIStackView()
@@ -180,6 +183,7 @@ final class CalculatorUIStackView: UIStackView {
                 let button = UIButton()
                 button.translatesAutoresizingMaskIntoConstraints = false
                 button.setTitle("KRW ", for: .normal)
+                button.titleLabel?.font = UIFont.Pretendard(.medium, size: 16)
                 button.setImage(UIImage(systemName: "chevron.down"), for: .normal)
                 button.tintColor = .label
                 button.setTitleColor(.label, for: .normal)
@@ -206,7 +210,6 @@ final class CalculatorUIStackView: UIStackView {
             view.backgroundColor = .systemBackground
             view.addBorder(.top, color: .gray, thickness: 0.3)
             view.addBorder(.bottom, color: .gray, thickness: 0.3)
-            view.addBorder(.right, color: .gray, thickness: 0.3)
             
             let label1: UILabel = {
                 let label = UILabel()
@@ -214,7 +217,7 @@ final class CalculatorUIStackView: UIStackView {
                 label.text = ""
                 label.textColor = .gray
                 label.textAlignment = .right
-                label.font = label.font.withSize(20)
+                label.font = UIFont.Pretendard(.regular, size: 20)
                 label.tag = 17
                 return label
             }()
@@ -224,7 +227,7 @@ final class CalculatorUIStackView: UIStackView {
                 label.text = "0.0"
                 label.textColor = .label
                 label.textAlignment = .right
-                label.font = label.font.withSize(25)
+                label.font = UIFont.Pretendard(.regular, size: 25)
                 label.tag = 18
                 return label
             }()
@@ -276,7 +279,6 @@ final class CalculatorUIStackView: UIStackView {
             view.translatesAutoresizingMaskIntoConstraints = false
             view.backgroundColor = .systemBackground
             view.addBorder(.bottom, color: .gray, thickness: 0.5)
-            view.addBorder(.left, color: .gray, thickness: 0.3)
             
             let horizonalStackVeiw: UIStackView = {
                 let stackView = UIStackView()
@@ -293,6 +295,7 @@ final class CalculatorUIStackView: UIStackView {
                 let button = UIButton()
                 button.translatesAutoresizingMaskIntoConstraints = false
                 button.setTitle("KRW ", for: .normal)
+                button.titleLabel?.font = UIFont.Pretendard(.medium, size: 16)
                 button.setImage(UIImage(systemName: "chevron.down"), for: .normal)
                 button.tintColor = .label
                 button.setTitleColor(.label, for: .normal)
@@ -317,7 +320,6 @@ final class CalculatorUIStackView: UIStackView {
         let view2: UIView = {
             let view = UIView()
             view.addBorder(.bottom, color: .gray, thickness: 0.5)
-            view.addBorder(.right, color: .gray, thickness: 0.5)
             view.translatesAutoresizingMaskIntoConstraints = false
             
             let label: UILabel = {
@@ -326,7 +328,7 @@ final class CalculatorUIStackView: UIStackView {
                 label.text = "0.0"
                 label.textColor = .label
                 label.textAlignment = .right
-                label.font = label.font.withSize(25)
+                label.font = UIFont.Pretendard(.regular, size: 25)
                 label.tag = 20
                 return label
             }()

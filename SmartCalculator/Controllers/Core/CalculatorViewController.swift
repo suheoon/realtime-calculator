@@ -41,6 +41,7 @@ final class CalculatorViewController: UIViewController {
         let label = UILabel()
         label.textColor = UIColor.label
         label.text = "환율 계산기"
+        label.font = UIFont.Pretendard(.semiaBold, size: 18)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: label)
     }
 }
