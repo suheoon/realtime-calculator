@@ -93,6 +93,8 @@ final class CalculatorUIStackView: UIStackView {
                 let image = UIImage(systemName: "delete.left")?.withRenderingMode(.alwaysTemplate)
                 button.setImage(image, for: .normal)
                 button.imageView?.tintColor = .label
+                let longPress = UILongPressGestureRecognizer(target: self, action: #selector(clearAll(_:)))
+                button.addGestureRecognizer(longPress)
             } else {
                 button.setTitle(title1[i], for: .normal)
                 button.setTitleColor(.label, for: .normal)
@@ -160,7 +162,6 @@ final class CalculatorUIStackView: UIStackView {
             view.translatesAutoresizingMaskIntoConstraints = false
             view.backgroundColor = .systemBackground
             view.addBorder(.top, color: .gray, thickness: 0.3)
-            //            view.addBorder(.right, color: .gray, thickness: 0.3)
             view.addBorder(.bottom, color: .gray, thickness: 0.3)
             view.addBorder(.left, color: .gray, thickness: 0.3)
             
@@ -175,7 +176,7 @@ final class CalculatorUIStackView: UIStackView {
             }()
             
             // from 버튼
-            let fromSelectButton: UIButton = {
+            let button: UIButton = {
                 let button = UIButton()
                 button.translatesAutoresizingMaskIntoConstraints = false
                 button.setTitle("KRW ", for: .normal)
@@ -184,11 +185,12 @@ final class CalculatorUIStackView: UIStackView {
                 button.setTitleColor(.label, for: .normal)
                 button.setPreferredSymbolConfiguration(.init(pointSize: 13), forImageIn: .normal)
                 button.semanticContentAttribute = .forceRightToLeft
+                button.tag = 16
                 //                button.addTarget(self, action: #selector(test(_:)), for: .touchUpInside)
                 return button
             }()
             
-            horizonalStacVeiw.addArrangedSubview(fromSelectButton)
+            horizonalStacVeiw.addArrangedSubview(button)
             view.addSubview(horizonalStacVeiw)
             
             view.widthAnchor.constraint(equalToConstant: screenWidth / 4).isActive = true
@@ -200,27 +202,53 @@ final class CalculatorUIStackView: UIStackView {
         
         let view2: UIView = {
             let view = UIView()
-            let label: UILabel = {
-                let label = UILabel()
-                label.translatesAutoresizingMaskIntoConstraints = false
-                label.text = "0"
-                label.textColor = .label
-                label.textAlignment = .right
-                label.font = label.font.withSize(25)
-                
-                return label
-            }()
             view.translatesAutoresizingMaskIntoConstraints = false
             view.backgroundColor = .systemBackground
             view.addBorder(.top, color: .gray, thickness: 0.3)
             view.addBorder(.bottom, color: .gray, thickness: 0.3)
             view.addBorder(.right, color: .gray, thickness: 0.3)
-            view.addSubview(label)
+            
+            let label1: UILabel = {
+                let label = UILabel()
+                label.translatesAutoresizingMaskIntoConstraints = false
+                label.text = ""
+                label.textColor = .gray
+                label.textAlignment = .right
+                label.font = label.font.withSize(20)
+                label.tag = 17
+                return label
+            }()
+            let label2: UILabel = {
+                let label = UILabel()
+                label.translatesAutoresizingMaskIntoConstraints = false
+                label.text = "0.0"
+                label.textColor = .label
+                label.textAlignment = .right
+                label.font = label.font.withSize(25)
+                label.tag = 18
+                return label
+            }()
+            
+            let verticalStackVeiw: UIStackView = {
+                let stackView = UIStackView()
+                stackView.translatesAutoresizingMaskIntoConstraints = false
+                stackView.distribution = .fillEqually
+                stackView.alignment = .fill
+                stackView.spacing = 10
+                stackView.axis = .vertical
+                return stackView
+            }()
+            
+            verticalStackVeiw.addArrangedSubview(label1)
+            verticalStackVeiw.addArrangedSubview(label2)
+            
+            view.addSubview(verticalStackVeiw)
             
             view.widthAnchor.constraint(equalToConstant: screenWidth / 4 * 3).isActive = true
-            label.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
-            label.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20).isActive = true
-            label.widthAnchor.constraint(equalToConstant: screenWidth / 4 * 3 - 40).isActive = true
+            verticalStackVeiw.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
+            verticalStackVeiw.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20).isActive = true
+            verticalStackVeiw.topAnchor.constraint(equalTo: view.topAnchor, constant: 20).isActive = true
+            verticalStackVeiw.widthAnchor.constraint(equalToConstant: screenWidth / 4 * 3 - 40).isActive = true
             
             return view
         }()
@@ -247,7 +275,6 @@ final class CalculatorUIStackView: UIStackView {
             let view = UIView()
             view.translatesAutoresizingMaskIntoConstraints = false
             view.backgroundColor = .systemBackground
-            //            view.addBorder(.right, color: .gray, thickness: 0.3)
             view.addBorder(.bottom, color: .gray, thickness: 0.5)
             view.addBorder(.left, color: .gray, thickness: 0.3)
             
@@ -271,6 +298,7 @@ final class CalculatorUIStackView: UIStackView {
                 button.setTitleColor(.label, for: .normal)
                 button.setPreferredSymbolConfiguration(.init(pointSize: 13), forImageIn: .normal)
                 button.semanticContentAttribute = .forceRightToLeft
+                button.tag = 19
                 //                button.addTarget(self, action: #selector(test(_:)), for: .touchUpInside)
                 return button
             }()
@@ -295,11 +323,11 @@ final class CalculatorUIStackView: UIStackView {
             let label: UILabel = {
                 let label = UILabel()
                 label.translatesAutoresizingMaskIntoConstraints = false
-                label.text = "0"
+                label.text = "0.0"
                 label.textColor = .label
                 label.textAlignment = .right
                 label.font = label.font.withSize(25)
-                
+                label.tag = 20
                 return label
             }()
             
@@ -318,44 +346,154 @@ final class CalculatorUIStackView: UIStackView {
         self.addArrangedSubview(horizonalStacVeiw)
     }
     
+    
     @objc func tapCalculatorButton(_ sender: UIButton) {
         let calculatorButtonType = CalculatorButtonType(rawValue: sender.tag)
+        let workingLabel = self.viewWithTag(17) as! UILabel
+        let fromResultLabel = self.viewWithTag(18) as! UILabel
+        let toResultLabel = self.viewWithTag(20) as! UILabel
         
         switch calculatorButtonType {
         case .zero:
-            print(sender.tag)
+            update(of: &working, with: "0")
         case .dot:
-            print(sender.tag)
+            update(of: &working, with: ".")
         case .delete:
-            print(sender.tag)
+            if !working.isEmpty {
+                working.removeLast()
+            }
         case .plus:
-            print(sender.tag)
+            update(of: &working, with: "+")
         case .one:
-            print(sender.tag)
+            update(of: &working, with: "1")
         case .two:
-            print(sender.tag)
+            update(of: &working, with: "2")
         case .three:
-            print(sender.tag)
+            update(of: &working, with: "3")
         case .minus:
-            print(sender.tag)
+            update(of: &working, with: "-")
         case .four:
-            print(sender.tag)
+            update(of: &working, with: "4")
         case .five:
-            print(sender.tag)
+            update(of: &working, with: "5")
         case .six:
-            print(sender.tag)
+            update(of: &working, with: "6")
         case .divide:
-            print(sender.tag)
+            update(of: &working, with: "/")
         case .seven:
-            print(sender.tag)
+            update(of: &working, with: "7")
         case .eight:
-            print(sender.tag)
+            update(of: &working, with: "8")
         case .nine:
-            print(sender.tag)
+            update(of: &working, with: "9")
         case .multiply:
-            print(sender.tag)
+            update(of: &working, with: "×")
         default:
             break
         }
+        
+        let result = calculate(convertInfixToPostfix(working))
+        
+        workingLabel.text = working
+        fromResultLabel.text = String(describing: result)
+        toResultLabel.text = String(describing: result)
+    }
+    
+    @objc func clearAll(_ sender: UIButton) {
+        let workingLabel = self.viewWithTag(17) as! UILabel
+        let fromResultLabel = self.viewWithTag(18) as! UILabel
+        let toResultLabel = self.viewWithTag(20) as! UILabel
+        
+        working = ""
+        workingLabel.text = working
+        fromResultLabel.text = "0.0"
+        toResultLabel.text = "0.0"
+    }
+    
+    private func update(of working: inout String, with operators: String) {
+        if operators == "+" || operators == "-" || operators == "/" || operators == "×" || operators == "."{
+            if let last = working.last {
+                if working.count == 1 && last == "0" {
+                    return
+                }
+                if !working.isEmpty && last == "+" || last == "-" || last == "/" || last == "×" || last == "."{
+                    return
+                }
+            }
+        }
+        working.append(operators)
+        if working.first == "0" && working.count > 1 {
+            working.remove(at: working.startIndex)
+        }
+    }
+    
+    private func tokenize(_ working: String) -> [String] {
+        let replaced = working.replacingOccurrences(of: "+", with: " + ")
+            .replacingOccurrences(of: "-", with: " - ")
+            .replacingOccurrences(of: "/", with: " / ")
+            .replacingOccurrences(of: "×", with: " × ")
+        
+        return replaced.components(separatedBy: " ")
+    }
+    
+    private func priority(of operators: String) -> Int {
+        if operators == "+" || operators == "-" {
+            return 1
+        }
+        if operators == "/" || operators == "×" {
+            return 2
+        }
+        return -1
+    }
+    
+    private func convertInfixToPostfix(_ infix: String) -> [String] {
+        let tokenized = tokenize(infix)
+        var stack = [String]()
+        var postfix = [String]()
+        
+        for item in tokenized {
+            if item == "+" || item == "-" || item == "/" || item == "×" {
+                while !stack.isEmpty && priority(of: stack.last!) >= priority(of: item) {
+                    postfix.append(stack.popLast()!)
+                }
+                stack.append(item)
+            } else {
+                postfix.append(item)
+            }
+        }
+        while !stack.isEmpty {
+            postfix.append(stack.popLast()!)
+        }
+        
+        return postfix
+    }
+    
+    private func calculate(_ postfix: [String]) -> Float {
+        var stack = [Float]()
+        
+        for item in postfix {
+            if item != "+" && item != "-" && item != "/" && item != "×" {
+                stack.append((item as NSString).floatValue)
+            } else {
+                if var opperand2 = stack.popLast(), let opperand1 = stack.popLast() {
+                    switch item {
+                    case "+":
+                        stack.append(opperand1 + opperand2)
+                    case "-":
+                        stack.append(opperand1 - opperand2)
+                    case "×":
+                        opperand2 = opperand2 == 0.0 ? 1.0 : opperand2
+                        stack.append(opperand1 * opperand2)
+                    case "/":
+                        opperand2 = opperand2 == 0.0 ? 1.0 : opperand2
+                        stack.append(opperand1 / opperand2)
+                    default:
+                        break
+                    }
+                }
+            }
+        }
+        
+        return stack.popLast() ?? 0
     }
 }
