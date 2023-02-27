@@ -11,58 +11,7 @@ final class CalculatorUIStackView: UIStackView {
     
     let screenHight: CGFloat = UIScreen.main.bounds.height
     let screenWidth: CGFloat = UIScreen.main.bounds.width
-    
-    let fromCurrencyTypeLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "KRW"
-        label.textColor = .label
-        label.font = label.font.withSize(15)
         
-        return label
-    }()
-    
-    let fromSelectButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.tintColor = .label
-        button.setImage(UIImage(systemName: "chevron.down"), for: .normal)
-        button.setPreferredSymbolConfiguration(.init(pointSize: 13), forImageIn: .normal)
-        
-        return button
-    }()
-    
-    let fromResultLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "0"
-        label.textColor = .label
-        label.textAlignment = .right
-        label.font = label.font.withSize(25)
-        
-        return label
-    }()
-    
-    let toCurrencyTypeLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "KRW"
-        label.textColor = .label
-        label.font = label.font.withSize(15)
-        
-        return label
-    }()
-    
-    let toSelectButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.tintColor = .label
-        button.setImage(UIImage(systemName: "chevron.down"), for: .normal)
-        button.setPreferredSymbolConfiguration(.init(pointSize: 13), forImageIn: .normal)
-        
-        return button
-    }()
-    
     let toResultLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -151,7 +100,7 @@ final class CalculatorUIStackView: UIStackView {
                 button.setTitle(title1[i], for: .normal)
                 button.setTitleColor(.label, for: .normal)
             }
-            //            button.addTarget(self, action: <#T##Selector#>, for: .touchUpInside)
+            button.addTarget(self, action: #selector(test(_:)), for: .touchUpInside)
             
             button.translatesAutoresizingMaskIntoConstraints = false
             button.widthAnchor.constraint(equalToConstant: screenWidth / 4).isActive = true
@@ -194,6 +143,7 @@ final class CalculatorUIStackView: UIStackView {
         self.addArrangedSubview(horizonalStacVeiw1)
     }
     
+    // from UI설정
     private func configureFromDisplayUI() {
         let horizonalStacVeiw: UIStackView = {
             let stackView = UIStackView()
@@ -210,7 +160,7 @@ final class CalculatorUIStackView: UIStackView {
             view.translatesAutoresizingMaskIntoConstraints = false
             view.backgroundColor = .systemBackground
             view.addBorder(.top, color: .gray, thickness: 0.3)
-            view.addBorder(.right, color: .gray, thickness: 0.3)
+//            view.addBorder(.right, color: .gray, thickness: 0.3)
             view.addBorder(.bottom, color: .gray, thickness: 0.3)
             view.addBorder(.left, color: .gray, thickness: 0.3)
             
@@ -223,13 +173,25 @@ final class CalculatorUIStackView: UIStackView {
                 
                 return stackView
             }()
+                        
+            // from 버튼
+            let fromSelectButton: UIButton = {
+                let button = UIButton()
+                button.translatesAutoresizingMaskIntoConstraints = false
+                button.setTitle("KRW ", for: .normal)
+                button.setImage(UIImage(systemName: "chevron.down"), for: .normal)
+                button.tintColor = .label
+                button.setTitleColor(.label, for: .normal)
+                button.setPreferredSymbolConfiguration(.init(pointSize: 13), forImageIn: .normal)
+                button.semanticContentAttribute = .forceRightToLeft
+//                button.addTarget(self, action: #selector(test(_:)), for: .touchUpInside)
+                return button
+            }()
             
-            horizonalStacVeiw.addArrangedSubview(fromCurrencyTypeLabel)
             horizonalStacVeiw.addArrangedSubview(fromSelectButton)
-            
             view.addSubview(horizonalStacVeiw)
             
-            view.widthAnchor.constraint(equalToConstant: screenWidth / 4 - 5).isActive = true
+            view.widthAnchor.constraint(equalToConstant: screenWidth / 4).isActive = true
             horizonalStacVeiw.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
             horizonalStacVeiw.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
             
@@ -238,17 +200,27 @@ final class CalculatorUIStackView: UIStackView {
         
         let view2: UIView = {
             let view = UIView()
+            let label: UILabel = {
+                let label = UILabel()
+                label.translatesAutoresizingMaskIntoConstraints = false
+                label.text = "0"
+                label.textColor = .label
+                label.textAlignment = .right
+                label.font = label.font.withSize(25)
+                
+                return label
+            }()
             view.translatesAutoresizingMaskIntoConstraints = false
             view.backgroundColor = .systemBackground
             view.addBorder(.top, color: .gray, thickness: 0.3)
             view.addBorder(.bottom, color: .gray, thickness: 0.3)
             view.addBorder(.right, color: .gray, thickness: 0.3)
-            view.addSubview(fromResultLabel)
+            view.addSubview(label)
             
-            view.widthAnchor.constraint(equalToConstant: screenWidth / 4 * 3 - 5).isActive = true
-            fromResultLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
-            fromResultLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20).isActive = true
-            fromResultLabel.widthAnchor.constraint(equalToConstant: screenWidth / 4 * 3 - 40).isActive = true
+            view.widthAnchor.constraint(equalToConstant: screenWidth / 4 * 3).isActive = true
+            label.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
+            label.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20).isActive = true
+            label.widthAnchor.constraint(equalToConstant: screenWidth / 4 * 3 - 40).isActive = true
             
             return view
         }()
@@ -259,6 +231,7 @@ final class CalculatorUIStackView: UIStackView {
         self.addArrangedSubview(horizonalStacVeiw)
     }
     
+    // TO UI설정
     private func configureToDisplayUI() {
         let horizonalStacVeiw: UIStackView = {
             let stackView = UIStackView()
@@ -274,11 +247,11 @@ final class CalculatorUIStackView: UIStackView {
             let view = UIView()
             view.translatesAutoresizingMaskIntoConstraints = false
             view.backgroundColor = .systemBackground
-            view.addBorder(.right, color: .gray, thickness: 0.3)
+//            view.addBorder(.right, color: .gray, thickness: 0.3)
             view.addBorder(.bottom, color: .gray, thickness: 0.5)
             view.addBorder(.left, color: .gray, thickness: 0.3)
             
-            let horizonalStacVeiw: UIStackView = {
+            let horizonalStackVeiw: UIStackView = {
                 let stackView = UIStackView()
                 stackView.translatesAutoresizingMaskIntoConstraints = false
                 stackView.axis = .horizontal
@@ -287,15 +260,28 @@ final class CalculatorUIStackView: UIStackView {
                 
                 return stackView
             }()
+                      
+            // to버튼
+            let button: UIButton = {
+                let button = UIButton()
+                button.translatesAutoresizingMaskIntoConstraints = false
+                button.setTitle("KRW ", for: .normal)
+                button.setImage(UIImage(systemName: "chevron.down"), for: .normal)
+                button.tintColor = .label
+                button.setTitleColor(.label, for: .normal)
+                button.setPreferredSymbolConfiguration(.init(pointSize: 13), forImageIn: .normal)
+                button.semanticContentAttribute = .forceRightToLeft
+//                button.addTarget(self, action: #selector(test(_:)), for: .touchUpInside)
+                return button
+            }()
             
-            horizonalStacVeiw.addArrangedSubview(toCurrencyTypeLabel)
-            horizonalStacVeiw.addArrangedSubview(toSelectButton)
+            horizonalStackVeiw.addArrangedSubview(button)
             
-            view.addSubview(horizonalStacVeiw)
+            view.addSubview(horizonalStackVeiw)
             
-            view.widthAnchor.constraint(equalToConstant: screenWidth / 4 - 5).isActive = true
-            horizonalStacVeiw.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-            horizonalStacVeiw.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+            view.widthAnchor.constraint(equalToConstant: screenWidth / 4).isActive = true
+            horizonalStackVeiw.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+            horizonalStackVeiw.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
             
             return view
         }()
@@ -308,7 +294,7 @@ final class CalculatorUIStackView: UIStackView {
             
             view.addSubview(toResultLabel)
             
-            view.widthAnchor.constraint(equalToConstant: screenWidth / 4 * 3 -  5).isActive = true
+            view.widthAnchor.constraint(equalToConstant: screenWidth / 4 * 3).isActive = true
             toResultLabel.widthAnchor.constraint(equalToConstant: screenWidth / 4 * 3 - 40).isActive = true
             toResultLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
             toResultLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20).isActive = true
@@ -319,6 +305,10 @@ final class CalculatorUIStackView: UIStackView {
         horizonalStacVeiw.addArrangedSubview(view1)
         horizonalStacVeiw.addArrangedSubview(view2)
         self.addArrangedSubview(horizonalStacVeiw)
+    }
+    
+    @objc func test(_ sender: UIButton) {
+        print("test")
     }
     
     
