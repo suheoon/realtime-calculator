@@ -424,9 +424,25 @@ final class CalculatorUIStackView: UIStackView {
             }
         }
         working.append(operators)
+        
+        var dotCount = 0
+        for char in working {
+            if char == "+" || char == "-" || char == "/" || char == "×" {
+                dotCount = 0
+            }
+            if char == "." {
+                dotCount += 1
+            }
+        }
+        
+        if dotCount > 1 {
+            working.removeLast()
+        }
+        
         if working.first == "0" && working.count > 1 {
             working.remove(at: working.startIndex)
         }
+        
     }
     
     private func tokenize(_ working: String) -> [String] {
