@@ -185,7 +185,7 @@ final class CalculatorUIStackView: UIStackView {
                 button.setTitle("KRW ", for: .normal)
                 button.titleLabel?.font = UIFont.Pretendard(.medium, size: 16)
                 button.setImage(UIImage(systemName: "chevron.down"), for: .normal)
-                button.tintColor = .label
+                button.tintColor = UIColor.clear
                 button.setTitleColor(.label, for: .normal)
                 button.setPreferredSymbolConfiguration(.init(pointSize: 13), forImageIn: .normal)
                 button.semanticContentAttribute = .forceRightToLeft
@@ -302,7 +302,7 @@ final class CalculatorUIStackView: UIStackView {
                 button.setPreferredSymbolConfiguration(.init(pointSize: 13), forImageIn: .normal)
                 button.semanticContentAttribute = .forceRightToLeft
                 button.tag = 19
-                //                button.addTarget(self, action: #selector(test(_:)), for: .touchUpInside)
+//                button.addTarget(self, action: #selector(test(_:)), for: .touchUpInside)
                 return button
             }()
             
@@ -412,6 +412,8 @@ final class CalculatorUIStackView: UIStackView {
         toResultLabel.text = "0.0"
     }
     
+    
+    // 계산기 로직, 추후 분리할것
     private func update(of working: inout String, with operators: String) {
         if operators == "+" || operators == "-" || operators == "/" || operators == "×" || operators == "."{
             if let last = working.last {
