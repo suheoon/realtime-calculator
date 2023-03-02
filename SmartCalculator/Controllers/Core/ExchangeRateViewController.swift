@@ -8,11 +8,17 @@
 import UIKit
 
 final class ExchangeRateViewController: UIViewController {
+    
+    let currencyManger = CurrencyManager.shared
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
+        
     }
     
+    func setupDatas() {
+        currencyManger.setupDatasFromAPI {}
+    }
 
 }
