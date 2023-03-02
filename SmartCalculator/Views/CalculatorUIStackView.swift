@@ -16,6 +16,8 @@ enum CalculatorButtonType: Int {
 
 final class CalculatorUIStackView: UIStackView {
     
+    // from, to currnecy를 모두 원 단위로 바꾸고 from / to 를 하면 계산가능
+    
     let screenHight: CGFloat = UIScreen.main.bounds.height
     let screenWidth: CGFloat = UIScreen.main.bounds.width
     
@@ -185,7 +187,7 @@ final class CalculatorUIStackView: UIStackView {
                 button.setTitle("KRW ", for: .normal)
                 button.titleLabel?.font = UIFont.Pretendard(.medium, size: 16)
                 button.setImage(UIImage(systemName: "chevron.down"), for: .normal)
-                button.tintColor = UIColor.clear
+                button.tintColor = .label
                 button.setTitleColor(.label, for: .normal)
                 button.setPreferredSymbolConfiguration(.init(pointSize: 13), forImageIn: .normal)
                 button.semanticContentAttribute = .forceRightToLeft

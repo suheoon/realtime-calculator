@@ -14,7 +14,7 @@ final class ExchangeRateViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        
+        setupDatas()
     }
     
     func setupDatas() {

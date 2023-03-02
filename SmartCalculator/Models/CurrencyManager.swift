@@ -28,6 +28,7 @@ final class CurrencyManager {
             switch result {
             case .success(let currencyDatas):
                 self.currencyArrays = currencyDatas
+//                dump(currencyDatas)
                 completion()
             case .failure(let error):
                 print(error.localizedDescription)

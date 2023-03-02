@@ -12,9 +12,12 @@ final class CalculatorViewController: UIViewController {
     private lazy var calculatorView = CalculatorUIStackView(frame: .zero)
     var buttonHeight: CGFloat?
     
+    let currencyManger = CurrencyManager.shared
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
+//        currencyManger.setupDatasFromAPI {}
         view.addSubview(calculatorView)
         
         configureNavBar()
