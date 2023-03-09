@@ -12,6 +12,6 @@ extension UITabBar {
         UITabBar.appearance().shadowImage = UIImage()
         UITabBar.appearance().backgroundImage = UIImage()
         UITabBar.appearance().backgroundColor = UIColor.white
-        
+
     }
 }

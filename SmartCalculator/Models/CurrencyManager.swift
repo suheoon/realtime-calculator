@@ -11,9 +11,7 @@ final class CurrencyManager {
     
     static let shared = CurrencyManager()
     
-    private init() {
-        
-    }
+    private init() {}
     
     private let currencyService = CurrencyService.shared
     
@@ -28,7 +26,6 @@ final class CurrencyManager {
             switch result {
             case .success(let currencyDatas):
                 self.currencyArrays = currencyDatas
-//                dump(currencyDatas)
                 completion()
             case .failure(let error):
                 print(error.localizedDescription)

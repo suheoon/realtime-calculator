@@ -49,7 +49,7 @@ final class CalculatorUIStackView: UIStackView {
         let title3 = ["4", "5", "6", "÷"]
         let title4 = ["7", "8", "9", "×"]
         
-        let horizonalStacVeiw1: UIStackView = {
+        let horizonalStackVeiw1: UIStackView = {
             let stackView = UIStackView()
             stackView.translatesAutoresizingMaskIntoConstraints = false
             stackView.axis = .horizontal
@@ -106,7 +106,7 @@ final class CalculatorUIStackView: UIStackView {
             button.translatesAutoresizingMaskIntoConstraints = false
             button.widthAnchor.constraint(equalToConstant: screenWidth / 4).isActive = true
             button.addTarget(self, action: #selector(tapCalculatorButton(_:)), for: .touchUpInside)
-            horizonalStacVeiw1.addArrangedSubview(button)
+            horizonalStackVeiw1.addArrangedSubview(button)
         }
         
         for i in 0..<4 {
@@ -148,7 +148,7 @@ final class CalculatorUIStackView: UIStackView {
         self.addArrangedSubview(horizonalStacVeiw4)
         self.addArrangedSubview(horizonalStacVeiw3)
         self.addArrangedSubview(horizonalStacVeiw2)
-        self.addArrangedSubview(horizonalStacVeiw1)
+        self.addArrangedSubview(horizonalStackVeiw1)
     }
     
     // from UI설정

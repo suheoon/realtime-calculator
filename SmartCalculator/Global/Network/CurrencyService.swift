@@ -26,8 +26,6 @@ final class CurrencyService {
         perfromRequest(with: urlString) { result in
             completion(result)
         }
-        print(urlString)
-        
     }
     
     private func perfromRequest(with urlString: String, completion: @escaping NetworkCompletion) {

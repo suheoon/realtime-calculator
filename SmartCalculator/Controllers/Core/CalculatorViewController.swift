@@ -9,7 +9,13 @@ import UIKit
 
 final class CalculatorViewController: UIViewController {
     
-    private lazy var calculatorView = CalculatorUIStackView(frame: .zero)
+    private lazy var calculatorView = {
+        let calculatorView = CalculatorUIStackView(frame: .zero)
+        calculatorView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return calculatorView
+    }()
+    
     var buttonHeight: CGFloat?
     
     let currencyManger = CurrencyManager.shared
@@ -17,8 +23,8 @@ final class CalculatorViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-//        currencyManger.setupDatasFromAPI {}
         view.addSubview(calculatorView)
+        currencyManger.setupDatasFromAPI {}
         
         configureNavBar()
     }
@@ -29,8 +35,6 @@ final class CalculatorViewController: UIViewController {
     }
     
     private func configureLayout() {
-        calculatorView.translatesAutoresizingMaskIntoConstraints = false
-
         let calculatorViewConstraints  = [
             calculatorView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             calculatorView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
