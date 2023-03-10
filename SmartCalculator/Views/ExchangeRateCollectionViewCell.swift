@@ -28,9 +28,11 @@ final class ExchangeRateCollectionViewCell: UICollectionViewCell {
     }()
     
     let nationalFlag: UIImageView = {
-        let imageView = UIImageView()
+        let imageView = UIImageView(frame: CGRectMake(0, 0, 50, 30))
+        imageView.backgroundColor = .yellow
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image =  UIImage(named: "USD")?.resize(targetSize: CGSize(width: 60 , height: 60))
+
+        imageView.image =  UIImage(named: "BRL")?.resize(targetSize: imageView.frame.size)
         
         return imageView
     }()
@@ -43,13 +45,29 @@ final class ExchangeRateCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
+    private let separatorView: UIView = {
+        let view = UIView()
+        view.addBorder(.top, color: .gray, thickness: 0.3)
+        view.addBorder(.bottom, color: .gray, thickness: 0.3)
+        
+        return view
+    }()
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.addSubview(horizonalStackVeiw)
+        contentView.addSubview(separatorView)
         applyConstraints()
         configureUI()
     }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        separatorView.frame = CGRect(x: 0, y: contentView.bounds.maxY - 1, width: contentView.bounds.width, height: 1)
+    }
+    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -68,6 +86,7 @@ final class ExchangeRateCollectionViewCell: UICollectionViewCell {
         let horizonalStackVeiwConstraints = [
             horizonalStackVeiw.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             horizonalStackVeiw.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            horizonalStackVeiw.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
         ]
         
         NSLayoutConstraint.activate(horizonalStackVeiwConstraints)
