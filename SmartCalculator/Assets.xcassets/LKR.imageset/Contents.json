@@ -1,17 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "DKK.svg",
+      "filename" : "LKR.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "DKK 1.svg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "DKK 2.svg",
       "idiom" : "universal",
       "scale" : "3x"
     }

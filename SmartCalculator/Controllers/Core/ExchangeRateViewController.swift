@@ -9,6 +9,8 @@ import UIKit
 
 final class ExchangeRateViewController: UIViewController {
     
+    var currencyArrays: [Currency] = []
+    
     private lazy var exchangeRatecollectionVeiw: UICollectionView = {
         let collectionView =  UICollectionView(frame: .zero, collectionViewLayout: self.compositionalLayout)
         collectionView.isScrollEnabled = true
@@ -40,6 +42,7 @@ final class ExchangeRateViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         view.addSubview(exchangeRatecollectionVeiw)
+        currencyArrays = CurrencyManager.shared.getCurrencyArraysFromAPI()
         setupCollectionView()
         configureLayout()
     }
@@ -67,13 +70,12 @@ extension ExchangeRateViewController: UICollectionViewDelegate, UICollectionView
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        10
+        currencyArrays.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let currencyArrays = CurrencyManager.shared.getCurrencyArraysFromAPI()
         let cell = exchangeRatecollectionVeiw.dequeueReusableCell(withReuseIdentifier: ExchangeRateCollectionViewCell.identifier, for: indexPath) as! ExchangeRateCollectionViewCell
-        cell.currency = currencyArrays[0]
+        cell.currency = currencyArrays[indexPath.row]
         
         return cell
     }

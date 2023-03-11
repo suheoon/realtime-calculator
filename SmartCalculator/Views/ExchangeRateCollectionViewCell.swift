@@ -31,8 +31,6 @@ final class ExchangeRateCollectionViewCell: UICollectionViewCell {
         let imageView = UIImageView(frame: CGRectMake(0, 0, 50, 30))
         imageView.backgroundColor = .yellow
         imageView.translatesAutoresizingMaskIntoConstraints = false
-
-        imageView.image =  UIImage(named: "BRL")?.resize(targetSize: imageView.frame.size)
         
         return imageView
     }()
@@ -73,6 +71,11 @@ final class ExchangeRateCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        nationalFlag.image = nil
+    }
+    
     private func configureUI() {
         horizonalStackVeiw.addArrangedSubview(nationalFlag)
         horizonalStackVeiw.addArrangedSubview(currencyName)
@@ -80,6 +83,9 @@ final class ExchangeRateCollectionViewCell: UICollectionViewCell {
     
     private func configureUIWithData() {
         currencyName.text = currency?.currencyCode
+        if let currencyCode = currency?.currencyCode {
+            setImage(currencyCode)
+        }
     }
     
     private func applyConstraints() {
@@ -90,5 +96,22 @@ final class ExchangeRateCollectionViewCell: UICollectionViewCell {
         ]
         
         NSLayoutConstraint.activate(horizonalStackVeiwConstraints)
+    }
+    
+    func setImage(_ name: String) {
+        let cacheKey = NSString(string: name)
+        
+        if let cachedImage = ImageCacheManager.shared.object(forKey: cacheKey) {
+            nationalFlag.image = cachedImage
+            return
+        }
+        
+        guard let svgImage = UIImage(named: name)?.resize(targetSize: nationalFlag.frame.size) else { return }
+        let renderer = UIGraphicsImageRenderer(size: svgImage.size)
+        var image = renderer.image { context in
+            svgImage.draw(in: CGRect(origin: .zero, size: svgImage.size))
+        }
+        ImageCacheManager.shared.setObject(image, forKey: cacheKey)
+        nationalFlag.image = image
     }
 }
