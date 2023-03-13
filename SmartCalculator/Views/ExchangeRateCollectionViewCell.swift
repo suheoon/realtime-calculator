@@ -99,7 +99,7 @@ final class ExchangeRateCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .label
-        label.font = UIFont.Pretendard(.regular, size: 12)
+        label.font = UIFont.Pretendard(.medium, size: 12)
         
         return label
     }()
@@ -178,14 +178,14 @@ final class ExchangeRateCollectionViewCell: UICollectionViewCell {
         
         if let change = currency?.change ,let changeRate = currency?.changeRate, let changePrice = currency?.changePrice {
             if change == "RISE" {
-                changeRateLabel.textColor = .red
-                changePriceLabel.textColor = .red
+                changeRateLabel.textColor = .systemRed
+                changePriceLabel.textColor = .systemRed
                 changeRateLabel.text =  "(+" + String(format: "%.2f", changeRate) + "%)"
                 changePriceLabel.text = "▲" + String(format: "%.2f", changePrice)
             }
             if change == "FALL" {
-                changeRateLabel.textColor = .blue
-                changePriceLabel.textColor = .blue
+                changeRateLabel.textColor = .systemBlue
+                changePriceLabel.textColor = .systemBlue
                 changeRateLabel.text = "(-" + String(format: "%.2f", changeRate) + "%)"
                 changePriceLabel.text = "▼" + String(format: "%.2f", changePrice)
             }

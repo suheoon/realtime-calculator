@@ -53,6 +53,7 @@ final class ExchangeRateViewController: UIViewController {
         view.addSubview(exchangeRateCollectionViewHeader)
         view.addSubview(exchangeRatecollectionVeiw)
         currencyArrays = CurrencyManager.shared.getCurrencyArraysFromAPI()
+        configureNavBar()
         setupCollectionView()
         applyConstraints()
     }
@@ -66,7 +67,7 @@ final class ExchangeRateViewController: UIViewController {
     private func applyConstraints() {
         let exchangeRateCollectionViewHeaderConstraints = [
             exchangeRateCollectionViewHeader.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
-            exchangeRateCollectionViewHeader.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            exchangeRateCollectionViewHeader.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             exchangeRateCollectionViewHeader.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20)
         ]
 
@@ -81,6 +82,17 @@ final class ExchangeRateViewController: UIViewController {
         NSLayoutConstraint.activate(exchangeRatecollectionVeiwConstraints)
     }
     
+    private func configureNavBar() {
+        let label = UILabel()
+        label.textColor = UIColor.label
+        if !currencyArrays.isEmpty {
+            if let date = currencyArrays.first?.date, let time = currencyArrays.first?.time {
+                label.text = date + " " + time + " " + "하나은행 기준"
+            }
+        }
+        label.font = UIFont.Pretendard(.medium, size: 13)
+        self.navigationItem.titleView = label
+    }
     
 }
 

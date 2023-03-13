@@ -59,14 +59,10 @@ class ExchangeRateCollectionViewHeader: UIStackView {
         self.axis = .horizontal
     }
     
-    private func configureUI() {
-        let spaceView = UIView()
-        spaceView.widthAnchor.constraint(equalToConstant: 5).isActive = true
-        
+    private func configureUI() {        
         self.addArrangedSubview(currencyNameLabel)
         self.addArrangedSubview(tradingStandardRateLabel)
         self.addArrangedSubview(netChangeLabel)
-//        self.addArrangedSubview(spaceView)
     }
     
     private func applyConstraints() {
