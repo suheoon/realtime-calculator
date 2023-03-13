@@ -11,11 +11,15 @@ import CoreData
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
+    let currencyManger = CurrencyManager.shared
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow()
         window?.rootViewController = TabBarViewController()
         window?.makeKeyAndVisible()
+        DispatchQueue.global(qos: .background).async {[weak self] in
+            self?.currencyManger.setupDatasFromAPI {}
+        }
         
         return true
     }

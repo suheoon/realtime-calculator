@@ -18,13 +18,10 @@ final class CalculatorViewController: UIViewController {
     
     var buttonHeight: CGFloat?
     
-    let currencyManger = CurrencyManager.shared
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         view.addSubview(calculatorView)
-        currencyManger.setupDatasFromAPI {}
         
         configureNavBar()
     }
@@ -37,7 +34,7 @@ final class CalculatorViewController: UIViewController {
     private func configureLayout() {
         let calculatorViewConstraints  = [
             calculatorView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            calculatorView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            calculatorView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             calculatorView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             calculatorView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ]
