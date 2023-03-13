@@ -17,7 +17,7 @@ final class ExchangeRateCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    let horizonalStackVeiw: UIStackView = {
+    let containerStackVeiw: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
@@ -27,18 +27,88 @@ final class ExchangeRateCollectionViewCell: UICollectionViewCell {
         return stackView
     }()
     
+    let horiziontalStackVeiw: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.spacing = 10
+        stackView.alignment = .center
+        
+        return stackView
+    }()
+    
+    let verticalStackVeiw1: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.distribution = .fillProportionally
+        stackView.spacing = 5
+        stackView.alignment = .leading
+        
+        return stackView
+    }()
+    
+    let verticalStackVeiw2: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.distribution = .fillProportionally
+        stackView.spacing = 5
+        stackView.alignment = .center
+        
+        return stackView
+    }()
+    
     let nationalFlag: UIImageView = {
-        let imageView = UIImageView(frame: CGRectMake(0, 0, 50, 30))
+        let imageView = UIImageView(frame: CGRectMake(0, 0, 30, 20))
         imageView.backgroundColor = .yellow
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
         return imageView
     }()
     
-    lazy var currencyName: UILabel = {
+    let currencyCodeLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .label
+        label.font = UIFont.Pretendard(.regular, size: 15)
+        
+        return label
+    }()
+    
+    let coutnryLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .label
+        label.font = UIFont.Pretendard(.regular, size: 13)
+        
+        return label
+    }()
+    
+    let basePriceLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .label
+        label.textAlignment = .left
+        label.font = UIFont.Pretendard(.regular, size: 12)
+        
+        return label
+    }()
+    
+    let changePriceLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .label
+        label.font = UIFont.Pretendard(.regular, size: 12)
+        
+        return label
+    }()
+    
+    let changeRateLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .label
+        label.font = UIFont.Pretendard(.regular, size: 12)
         
         return label
     }()
@@ -54,7 +124,7 @@ final class ExchangeRateCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.addSubview(horizonalStackVeiw)
+        contentView.addSubview(containerStackVeiw)
         contentView.addSubview(separatorView)
         applyConstraints()
         configureUI()
@@ -74,27 +144,68 @@ final class ExchangeRateCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         nationalFlag.image = nil
+        currencyCodeLabel.text = nil
+        basePriceLabel.text = nil
+        changeRateLabel.text = nil
+        changePriceLabel.text = nil
     }
     
     private func configureUI() {
-        horizonalStackVeiw.addArrangedSubview(nationalFlag)
-        horizonalStackVeiw.addArrangedSubview(currencyName)
+        verticalStackVeiw1.addArrangedSubview(currencyCodeLabel)
+        verticalStackVeiw1.addArrangedSubview(coutnryLabel)
+    
+        horiziontalStackVeiw.addArrangedSubview(nationalFlag)
+        horiziontalStackVeiw.addArrangedSubview(verticalStackVeiw1)
+        
+        verticalStackVeiw2.addArrangedSubview(changePriceLabel)
+        verticalStackVeiw2.addArrangedSubview(changeRateLabel)
+        
+        containerStackVeiw.addArrangedSubview(horiziontalStackVeiw)
+        containerStackVeiw.addArrangedSubview(basePriceLabel)
+        containerStackVeiw.addArrangedSubview(verticalStackVeiw2)
     }
     
     private func configureUIWithData() {
-        currencyName.text = currency?.currencyCode
-        if let currencyCode = currency?.currencyCode {
+        if let basePrice = currency?.basePrice, let currencyCode = currency?.currencyCode {
+            basePriceLabel.text = String(format: "%.2f", basePrice)
+            currencyCodeLabel.text = currencyCode
             setImage(currencyCode)
+        }
+        
+        if let country = currency?.country {
+            coutnryLabel.text = country
+        }
+        
+        if let change = currency?.change ,let changeRate = currency?.changeRate, let changePrice = currency?.changePrice {
+            if change == "RISE" {
+                changeRateLabel.textColor = .red
+                changePriceLabel.textColor = .red
+                changeRateLabel.text =  "(+" + String(format: "%.2f", changeRate) + "%)"
+                changePriceLabel.text = "▲" + String(format: "%.2f", changePrice)
+            }
+            if change == "FALL" {
+                changeRateLabel.textColor = .blue
+                changePriceLabel.textColor = .blue
+                changeRateLabel.text = "(-" + String(format: "%.2f", changeRate) + "%)"
+                changePriceLabel.text = "▼" + String(format: "%.2f", changePrice)
+            }
+            if change == "EVEN" {
+                changeRateLabel.textColor = .label
+                changePriceLabel.textColor = .label
+                changeRateLabel.text = "(" + String(format: "%.2f", changeRate) + "%)"
+                changePriceLabel.text = String(format: "%.2f", changePrice)
+            }
         }
     }
     
     private func applyConstraints() {
-        let horizonalStackVeiwConstraints = [
-            horizonalStackVeiw.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            horizonalStackVeiw.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-            horizonalStackVeiw.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
-        ]
+        horiziontalStackVeiw.widthAnchor.constraint(equalToConstant: Screen.screenWidth / 2).isActive = true
         
+        let horizonalStackVeiwConstraints = [
+            containerStackVeiw.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            containerStackVeiw.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            containerStackVeiw.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
+        ]
         NSLayoutConstraint.activate(horizonalStackVeiwConstraints)
     }
     
@@ -108,7 +219,7 @@ final class ExchangeRateCollectionViewCell: UICollectionViewCell {
         
         guard let svgImage = UIImage(named: name)?.resize(targetSize: nationalFlag.frame.size) else { return }
         let renderer = UIGraphicsImageRenderer(size: svgImage.size)
-        var image = renderer.image { context in
+        let image = renderer.image { context in
             svgImage.draw(in: CGRect(origin: .zero, size: svgImage.size))
         }
         ImageCacheManager.shared.setObject(image, forKey: cacheKey)

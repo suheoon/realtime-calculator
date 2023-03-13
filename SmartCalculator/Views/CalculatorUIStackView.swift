@@ -18,9 +18,6 @@ final class CalculatorUIStackView: UIStackView {
     
     // from, to currnecy를 모두 원 단위로 바꾸고 from / to 를 하면 계산가능
     
-    let screenHight: CGFloat = UIScreen.main.bounds.height
-    let screenWidth: CGFloat = UIScreen.main.bounds.width
-    
     var working: String = ""
     
     override init(frame: CGRect) {
@@ -104,7 +101,7 @@ final class CalculatorUIStackView: UIStackView {
             }
             button.tag = i
             button.translatesAutoresizingMaskIntoConstraints = false
-            button.widthAnchor.constraint(equalToConstant: screenWidth / 4).isActive = true
+            button.widthAnchor.constraint(equalToConstant: Screen.screenWidth / 4).isActive = true
             button.addTarget(self, action: #selector(tapCalculatorButton(_:)), for: .touchUpInside)
             horizonalStackVeiw1.addArrangedSubview(button)
         }
@@ -116,7 +113,7 @@ final class CalculatorUIStackView: UIStackView {
             button.titleLabel?.font = UIFont.Pretendard(.medium, size: 18)
             button.tag = i + 4
             button.translatesAutoresizingMaskIntoConstraints = false
-            button.widthAnchor.constraint(equalToConstant: screenWidth / 4).isActive = true
+            button.widthAnchor.constraint(equalToConstant: Screen.screenWidth / 4).isActive = true
             button.addTarget(self, action: #selector(tapCalculatorButton(_:)), for: .touchUpInside)
             horizonalStacVeiw2.addArrangedSubview(button)
         }
@@ -128,7 +125,7 @@ final class CalculatorUIStackView: UIStackView {
             button.titleLabel?.font = UIFont.Pretendard(.medium, size: 18)
             button.tag = i + 8
             button.translatesAutoresizingMaskIntoConstraints = false
-            button.widthAnchor.constraint(equalToConstant: screenWidth / 4).isActive = true
+            button.widthAnchor.constraint(equalToConstant: Screen.screenWidth / 4).isActive = true
             button.addTarget(self, action: #selector(tapCalculatorButton(_:)), for: .touchUpInside)
             horizonalStacVeiw3.addArrangedSubview(button)
         }
@@ -140,7 +137,7 @@ final class CalculatorUIStackView: UIStackView {
             button.titleLabel?.font = UIFont.Pretendard(.medium, size: 18)
             button.tag = i + 12
             button.translatesAutoresizingMaskIntoConstraints = false
-            button.widthAnchor.constraint(equalToConstant: screenWidth / 4).isActive = true
+            button.widthAnchor.constraint(equalToConstant: Screen.screenWidth / 4).isActive = true
             button.addTarget(self, action: #selector(tapCalculatorButton(_:)), for: .touchUpInside)
             horizonalStacVeiw4.addArrangedSubview(button)
         }
@@ -199,7 +196,7 @@ final class CalculatorUIStackView: UIStackView {
             horizonalStacVeiw.addArrangedSubview(button)
             view.addSubview(horizonalStacVeiw)
             
-            view.widthAnchor.constraint(equalToConstant: screenWidth / 4).isActive = true
+            view.widthAnchor.constraint(equalToConstant: Screen.screenWidth / 4).isActive = true
             horizonalStacVeiw.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
             horizonalStacVeiw.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
             
@@ -249,11 +246,11 @@ final class CalculatorUIStackView: UIStackView {
             
             view.addSubview(verticalStackVeiw)
             
-            view.widthAnchor.constraint(equalToConstant: screenWidth / 4 * 3).isActive = true
+            view.widthAnchor.constraint(equalToConstant: Screen.screenWidth / 4 * 3).isActive = true
             verticalStackVeiw.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
             verticalStackVeiw.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20).isActive = true
             verticalStackVeiw.topAnchor.constraint(equalTo: view.topAnchor, constant: 20).isActive = true
-            verticalStackVeiw.widthAnchor.constraint(equalToConstant: screenWidth / 4 * 3 - 40).isActive = true
+            verticalStackVeiw.widthAnchor.constraint(equalToConstant: Screen.screenWidth / 4 * 3 - 40).isActive = true
             
             return view
         }()
@@ -312,7 +309,7 @@ final class CalculatorUIStackView: UIStackView {
             
             view.addSubview(horizonalStackVeiw)
             
-            view.widthAnchor.constraint(equalToConstant: screenWidth / 4).isActive = true
+            view.widthAnchor.constraint(equalToConstant: Screen.screenWidth / 4).isActive = true
             horizonalStackVeiw.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
             horizonalStackVeiw.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
             
@@ -337,8 +334,8 @@ final class CalculatorUIStackView: UIStackView {
             
             view.addSubview(label)
             
-            view.widthAnchor.constraint(equalToConstant: screenWidth / 4 * 3).isActive = true
-            label.widthAnchor.constraint(equalToConstant: screenWidth / 4 * 3 - 40).isActive = true
+            view.widthAnchor.constraint(equalToConstant: Screen.screenWidth / 4 * 3).isActive = true
+            label.widthAnchor.constraint(equalToConstant: Screen.screenWidth / 4 * 3 - 40).isActive = true
             label.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
             label.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20).isActive = true
             

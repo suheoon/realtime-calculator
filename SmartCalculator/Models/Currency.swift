@@ -8,10 +8,12 @@
 import Foundation
 
 
+
 typealias CurrencyArray = [Currency]
 
 struct Currency: Codable {
-    let currencyCode, currencyName, country: String? // "USD" "달러" "미국"
+    let currencyCode, currencyName: String? // "USD" "달러" "미국"
+    var country: String?
     let date, time: String?
     let basePrice, openingPrice, highPrice, lowPrice: Double?
     let change: String? // "RISE" or "FALL"
@@ -49,4 +51,5 @@ struct Currency: Codable {
         guard let changePrice = changePrice, let basePrice = basePrice else { return 0.0 }
         return changePrice / basePrice * 100
     }
+    
 }
