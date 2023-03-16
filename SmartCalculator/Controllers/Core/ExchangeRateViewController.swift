@@ -9,9 +9,8 @@ import UIKit
 
 final class ExchangeRateViewController: UIViewController {
     
+    let currencyManger = CurrencyManager.shared
     var currencyArrays: [Currency] = []
-    
-    let dict = ["OMR": "오만", "CLP": "칠레", "LKR": "스리랑카", "DZD": "알제리", "KES": "케냐", "COP": "콜롬비아", "TZS": "탄자니아", "NPR": "네팔", "RON": "루마니아", "LYD": "라비아", "MOP": "마카오", "MMK": "미얀마", "ETB": "에티오피아", "UZS": "우즈베키스탄", "KHR": "캄보디아", "FJD": "피지"]
     
     private lazy var exchangeRatecollectionVeiw: UICollectionView = {
         let collectionView =  UICollectionView(frame: .zero, collectionViewLayout: self.compositionalLayout)
@@ -52,10 +51,14 @@ final class ExchangeRateViewController: UIViewController {
         view.backgroundColor = .systemBackground
         view.addSubview(exchangeRateCollectionViewHeader)
         view.addSubview(exchangeRatecollectionVeiw)
-        currencyArrays = CurrencyManager.shared.getCurrencyArraysFromAPI()
+        setupData()
         configureNavBar()
         setupCollectionView()
         applyConstraints()
+    }
+    
+    private func setupData() {
+        currencyArrays = currencyManger.getCurrencyArraysFromAPI()
     }
     
     private func setupCollectionView() {
@@ -87,7 +90,7 @@ final class ExchangeRateViewController: UIViewController {
         label.textColor = UIColor.label
         if !currencyArrays.isEmpty {
             if let date = currencyArrays.first?.date, let time = currencyArrays.first?.time {
-                label.text = date + " " + time + " " + "하나은행 기준"
+                label.text = date + " " + time + " " + "기준"
             }
         }
         label.font = UIFont.Pretendard(.medium, size: 13)
@@ -107,9 +110,7 @@ extension ExchangeRateViewController: UICollectionViewDelegate, UICollectionView
         let cell = exchangeRatecollectionVeiw.dequeueReusableCell(withReuseIdentifier: ExchangeRateCollectionViewCell.identifier, for: indexPath) as! ExchangeRateCollectionViewCell
         
         var currency = currencyArrays[indexPath.row]
-        if let currencyCode = currency.currencyCode {
-            currency.country = currency.country ?? dict[currencyCode]
-        }
+        currency.country = currency.country ?? currency.countryName
         
         cell.currency = currency
         

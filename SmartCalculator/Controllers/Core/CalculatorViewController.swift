@@ -28,10 +28,10 @@ final class CalculatorViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        configureLayout()
+        setupLayout()
     }
     
-    private func configureLayout() {
+    private func setupLayout() {
         let calculatorViewConstraints  = [
             calculatorView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             calculatorView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),

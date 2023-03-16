@@ -14,12 +14,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let currencyManger = CurrencyManager.shared
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        let dispatchGroup = DispatchGroup()
+        dispatchGroup.enter()
+        currencyManger.setupDatasFromAPI {
+            dispatchGroup.leave()
+        }
+        dispatchGroup.wait()
+        
         window = UIWindow()
         window?.rootViewController = TabBarViewController()
         window?.makeKeyAndVisible()
-        DispatchQueue.global(qos: .background).async {[weak self] in
-            self?.currencyManger.setupDatasFromAPI {}
-        }
         
         return true
     }
