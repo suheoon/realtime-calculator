@@ -21,7 +21,6 @@ class CurrencySelectionTableViewCell: UITableViewCell {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
-        stackView.distribution = .equalSpacing
         stackView.alignment = .center
         
         return stackView
@@ -31,6 +30,7 @@ class CurrencySelectionTableViewCell: UITableViewCell {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
+        stackView.distribution = .fill
         stackView.spacing = 10
         stackView.alignment = .center
         
@@ -66,8 +66,8 @@ class CurrencySelectionTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(containerStackVeiw)
-        configureUI()
         applyConstraints()
+        configureUI()
     }
     
     required init?(coder: NSCoder) {
@@ -75,17 +75,28 @@ class CurrencySelectionTableViewCell: UITableViewCell {
     }
     
     private func configureUI() {
+        let spaceView1 = UIView()
+        let spaceView2 = UIView()
+        
         horiziontalStackVeiw.addArrangedSubview(nationalFlag)
         horiziontalStackVeiw.addArrangedSubview(coutnryLabel)
+        horiziontalStackVeiw.addArrangedSubview(spaceView1)
+        
+        spaceView1.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         
         containerStackVeiw.addArrangedSubview(horiziontalStackVeiw)
         containerStackVeiw.addArrangedSubview(currencyCodeLabel)
+        containerStackVeiw.addArrangedSubview(spaceView2)
+        
+        spaceView2.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
     }
     
     private func applyConstraints() {
+        horiziontalStackVeiw.widthAnchor.constraint(equalToConstant: Screen.screenWidth / 5 * 4).isActive = true
+        
         let containerStackVeiwConstraints = [
             containerStackVeiw.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            containerStackVeiw.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            containerStackVeiw.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             containerStackVeiw.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
             containerStackVeiw.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
         ]
