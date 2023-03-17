@@ -11,6 +11,8 @@ class CurrencySelectionViewController: UIViewController {
     
     let currencyManger = CurrencyManager.shared
     var currencyArrays: [Currency] = []
+    var filteredContents: [Currency] = []
+    var searchTimer: Timer?
     
     private let searchController: UISearchController = {
         
@@ -23,26 +25,30 @@ class CurrencySelectionViewController: UIViewController {
     private let selectionTable: UITableView = {
         let table = UITableView()
         table.translatesAutoresizingMaskIntoConstraints = false
-        
         return table
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         view.addSubview(selectionTable)
-        navigationItem.searchController = searchController
-        navigationItem.hidesSearchBarWhenScrolling = false
+        setupSearchBar()
         setupData()
         setupSelectionTable()
         configureNavBar()
         applyConstraints()
     }
     
-
+    
     
     private func setupData() {
         currencyArrays = currencyManger.getCurrencyArraysFromAPI()
+    }
+    
+    private func setupSearchBar() {
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+        searchController.searchBar.delegate = self
     }
     
     private func setupSelectionTable() {
@@ -74,21 +80,27 @@ class CurrencySelectionViewController: UIViewController {
 
 extension CurrencySelectionViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return currencyArrays.count
+        if searchController.isActive {
+            return filteredContents.count
+        } else {
+            return currencyArrays.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = selectionTable.dequeueReusableCell(withIdentifier: CurrencySelectionTableViewCell.identifier, for: indexPath) as? CurrencySelectionTableViewCell else {
             return UITableViewCell()
         }
+
         
-        var currency = currencyArrays[indexPath.row]
+        var currency = searchController.isActive ? filteredContents[indexPath.row] :  currencyArrays[indexPath.row]
+        
         currency.country = currency.country ?? currency.countryName
         cell.currency = currency
         
         return cell
     }
-
+    
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
@@ -96,4 +108,29 @@ extension CurrencySelectionViewController: UITableViewDelegate, UITableViewDataS
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
     }
+}
+
+extension CurrencySelectionViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        let searchText = searchController.searchBar.text ?? ""
+        // 디바운싱 적용
+        searchTimer?.invalidate()
+        searchTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { [weak self] _ in
+            self?.search(for: searchText)
+        })
+        
+    }
+    
+    func search(for searchText: String) {
+        if searchText.isEmpty {
+            filteredContents = currencyArrays
+        } else {
+            filteredContents = currencyArrays.filter({
+                guard let country = $0.country, let currencyCode = $0.currencyCode else { return false }
+                return country.lowercased().contains(searchText.lowercased()) || currencyCode.lowercased().contains(searchText.lowercased())
+            })
+        }
+        selectionTable.reloadData()
+    }
+    
 }
