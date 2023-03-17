@@ -56,8 +56,7 @@ final class CalculatorViewController: UIViewController {
 extension CalculatorViewController: ButtonDelegate {
     func buttonTapped(_: UIButton) {
         let currencySelectionViewController = CurrencySelectionViewController()
-        currencySelectionViewController.modalPresentationStyle = .formSheet
-        self.present(currencySelectionViewController, animated: true, completion: nil)
+        self.navigationController?.pushViewController(currencySelectionViewController, animated: false)
     }
 }
 

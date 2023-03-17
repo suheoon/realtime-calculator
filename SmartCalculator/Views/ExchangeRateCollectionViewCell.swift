@@ -203,12 +203,12 @@ final class ExchangeRateCollectionViewCell: UICollectionViewCell {
     private func applyConstraints() {
         horiziontalStackVeiw.widthAnchor.constraint(equalToConstant: Screen.screenWidth / 2).isActive = true
         
-        let horizonalStackVeiwConstraints = [
+        let containerStackVeiwConstraints = [
             containerStackVeiw.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             containerStackVeiw.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
             containerStackVeiw.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
         ]
-        NSLayoutConstraint.activate(horizonalStackVeiwConstraints)
+        NSLayoutConstraint.activate(containerStackVeiwConstraints)
     }
     
     func setImage(_ name: String) {

@@ -21,6 +21,7 @@
 		745C155A29B9FF69006CAE86 /* ExchangeRateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745C155929B9FF69006CAE86 /* ExchangeRateCollectionViewCell.swift */; };
 		745C155D29BB7289006CAE86 /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745C155C29BB7289006CAE86 /* ImageCacheManager.swift */; };
 		7469A81329C32663005E6C6A /* CurrencySelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7469A81229C32663005E6C6A /* CurrencySelectionViewController.swift */; };
+		7469A81529C43044005E6C6A /* CurrencySelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7469A81429C43044005E6C6A /* CurrencySelectionTableViewCell.swift */; };
 		7472CB6929AA15D70097DBFC /* CALayerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7472CB6829AA15D70097DBFC /* CALayerExtension.swift */; };
 		7472CB6B29AA1BEE0097DBFC /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7472CB6A29AA1BEE0097DBFC /* UIViewExtension.swift */; };
 		748D65DB29BF3A90003F58D2 /* ExchangeRateCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748D65DA29BF3A90003F58D2 /* ExchangeRateCollectionViewHeader.swift */; };
@@ -57,6 +58,7 @@
 		745C155929B9FF69006CAE86 /* ExchangeRateCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateCollectionViewCell.swift; sourceTree = "<group>"; };
 		745C155C29BB7289006CAE86 /* ImageCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheManager.swift; sourceTree = "<group>"; };
 		7469A81229C32663005E6C6A /* CurrencySelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencySelectionViewController.swift; sourceTree = "<group>"; };
+		7469A81429C43044005E6C6A /* CurrencySelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencySelectionTableViewCell.swift; sourceTree = "<group>"; };
 		7472CB6829AA15D70097DBFC /* CALayerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayerExtension.swift; sourceTree = "<group>"; };
 		7472CB6A29AA1BEE0097DBFC /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		748D65DA29BF3A90003F58D2 /* ExchangeRateCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateCollectionViewHeader.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				745004B929A4B10500945D22 /* CalculatorUIStackView.swift */,
 				745C155929B9FF69006CAE86 /* ExchangeRateCollectionViewCell.swift */,
 				748D65DA29BF3A90003F58D2 /* ExchangeRateCollectionViewHeader.swift */,
+				7469A81429C43044005E6C6A /* CurrencySelectionTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -313,6 +316,7 @@
 				74FD863929B06E1700FD8925 /* Constants.swift in Sources */,
 				745C155A29B9FF69006CAE86 /* ExchangeRateCollectionViewCell.swift in Sources */,
 				745004B229A49C0C00945D22 /* CalculatorViewController.swift in Sources */,
+				7469A81529C43044005E6C6A /* CurrencySelectionTableViewCell.swift in Sources */,
 				745004BC29A4D74000945D22 /* UITabBarExtension.swift in Sources */,
 				74FD863129B066C500FD8925 /* Currency.swift in Sources */,
 				7450049729A4995E00945D22 /* SceneDelegate.swift in Sources */,
