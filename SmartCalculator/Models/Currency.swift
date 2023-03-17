@@ -12,22 +12,22 @@ typealias CurrencyArray = [Currency]
 let dict = ["OMR": "오만", "CLP": "칠레", "LKR": "스리랑카", "DZD": "알제리", "KES": "케냐", "COP": "콜롬비아", "TZS": "탄자니아", "NPR": "네팔", "RON": "루마니아", "LYD": "라비아", "MOP": "마카오", "MMK": "미얀마", "ETB": "에티오피아", "UZS": "우즈베키스탄", "KHR": "캄보디아", "FJD": "피지"]
 
 struct Currency: Codable {
-    let currencyCode, currencyName: String? // "USD" "달러"
+    var currencyCode, currencyName: String? // "USD" "달러"
     var country: String?
-    let date, time: String?
-    let basePrice, openingPrice, highPrice, lowPrice: Double?
-    let change: String? // "RISE" or "FALL"
-    let changePrice: Double?
-    let cashBuyingPrice, cashSellingPrice: Double? // (현찰) 사실 때 / 파실 때
-    let ttSellingPrice, ttBuyingPrice: Double? // (송금) 보내실 때 / 받으실 때
-    let exchangeCommission: Double? // 환전 수수료
-    let usDollarRate: Double? // 미화 환산율
-    let high52WPrice: Double?
-    let high52WDate: String?
-    let low52WPrice: Double?
-    let low52WDate: String?
-    let currencyUnit: Int? // 화폐 단위
-    let provider: String? // 하나은행
+    var date, time: String?
+    var basePrice, openingPrice, highPrice, lowPrice: Double?
+    var change: String? // "RISE" or "FALL"
+    var changePrice: Double?
+    var cashBuyingPrice, cashSellingPrice: Double? // (현찰) 사실 때 / 파실 때
+    var ttSellingPrice, ttBuyingPrice: Double? // (송금) 보내실 때 / 받으실 때
+    var exchangeCommission: Double? // 환전 수수료
+    var usDollarRate: Double? // 미화 환산율
+    var high52WPrice: Double?
+    var high52WDate: String?
+    var low52WPrice: Double?
+    var low52WDate: String?
+    var currencyUnit: Int? // 화폐 단위
+    var provider: String? // 하나은행
     var changeRate: Double? {
         guard let changePrice = changePrice, let basePrice = basePrice else { return 0.0 }
         return changePrice / basePrice * 100

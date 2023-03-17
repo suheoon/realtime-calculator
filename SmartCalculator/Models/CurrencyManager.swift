@@ -15,7 +15,7 @@ final class CurrencyManager {
     
     private let currencyService = CurrencyService.shared
     
-    private var currencyArrays: [Currency] = []
+    private var currencyArrays: [Currency] = [Currency(currencyCode: "KRW", country: "대한민국", basePrice: 1, change: "EVEN", changePrice: 0)]
     
     func getCurrencyArraysFromAPI() -> [Currency] {
         return currencyArrays
@@ -25,7 +25,7 @@ final class CurrencyManager {
         currencyService.fetchCurrency { result in
             switch result {
             case .success(let currencyDatas):
-                self.currencyArrays = currencyDatas
+                self.currencyArrays.append(contentsOf: currencyDatas)
                 completion()
             case .failure(let error):
                 print(error.localizedDescription)

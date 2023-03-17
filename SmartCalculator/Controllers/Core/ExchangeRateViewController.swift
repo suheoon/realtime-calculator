@@ -89,7 +89,7 @@ final class ExchangeRateViewController: UIViewController {
         let label = UILabel()
         label.textColor = UIColor.label
         if !currencyArrays.isEmpty {
-            if let date = currencyArrays.first?.date, let time = currencyArrays.first?.time {
+            if let date = currencyArrays[1].date, let time = currencyArrays[1].time {
                 label.text = date + " " + time + " " + "기준"
             }
         }

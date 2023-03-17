@@ -20,6 +20,7 @@
 		745004BC29A4D74000945D22 /* UITabBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745004BB29A4D74000945D22 /* UITabBarExtension.swift */; };
 		745C155A29B9FF69006CAE86 /* ExchangeRateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745C155929B9FF69006CAE86 /* ExchangeRateCollectionViewCell.swift */; };
 		745C155D29BB7289006CAE86 /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745C155C29BB7289006CAE86 /* ImageCacheManager.swift */; };
+		7469A81329C32663005E6C6A /* CurrencySelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7469A81229C32663005E6C6A /* CurrencySelectionViewController.swift */; };
 		7472CB6929AA15D70097DBFC /* CALayerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7472CB6829AA15D70097DBFC /* CALayerExtension.swift */; };
 		7472CB6B29AA1BEE0097DBFC /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7472CB6A29AA1BEE0097DBFC /* UIViewExtension.swift */; };
 		748D65DB29BF3A90003F58D2 /* ExchangeRateCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748D65DA29BF3A90003F58D2 /* ExchangeRateCollectionViewHeader.swift */; };
@@ -55,6 +56,7 @@
 		745004BB29A4D74000945D22 /* UITabBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITabBarExtension.swift; sourceTree = "<group>"; };
 		745C155929B9FF69006CAE86 /* ExchangeRateCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateCollectionViewCell.swift; sourceTree = "<group>"; };
 		745C155C29BB7289006CAE86 /* ImageCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheManager.swift; sourceTree = "<group>"; };
+		7469A81229C32663005E6C6A /* CurrencySelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencySelectionViewController.swift; sourceTree = "<group>"; };
 		7472CB6829AA15D70097DBFC /* CALayerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayerExtension.swift; sourceTree = "<group>"; };
 		7472CB6A29AA1BEE0097DBFC /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		748D65DA29BF3A90003F58D2 /* ExchangeRateCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateCollectionViewHeader.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 				745004AB29A49A0A00945D22 /* TabBarViewController.swift */,
 				745004B129A49C0C00945D22 /* CalculatorViewController.swift */,
 				745004B329A49C5500945D22 /* ExchangeRateViewController.swift */,
+				7469A81229C32663005E6C6A /* CurrencySelectionViewController.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -314,6 +317,7 @@
 				74FD863129B066C500FD8925 /* Currency.swift in Sources */,
 				7450049729A4995E00945D22 /* SceneDelegate.swift in Sources */,
 				74FD863429B06A6C00FD8925 /* CurrencyService.swift in Sources */,
+				7469A81329C32663005E6C6A /* CurrencySelectionViewController.swift in Sources */,
 				745004B829A49F6C00945D22 /* UIImageExtension.swift in Sources */,
 				74FD862F29ACCCA800FD8925 /* UIFontExtension.swift in Sources */,
 				7472CB6929AA15D70097DBFC /* CALayerExtension.swift in Sources */,

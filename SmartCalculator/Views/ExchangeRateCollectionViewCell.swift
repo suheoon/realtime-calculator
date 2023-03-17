@@ -166,10 +166,12 @@ final class ExchangeRateCollectionViewCell: UICollectionViewCell {
     }
     
     private func configureUIWithData() {
-        if let basePrice = currency?.basePrice, let currencyCode = currency?.currencyCode {
-            basePriceLabel.text = String(format: "%.2f", basePrice)
+        if let currencyCode = currency?.currencyCode {
             currencyCodeLabel.text = currencyCode
             setImage(currencyCode)
+        }
+        if let basePrice = currency?.basePrice {
+            basePriceLabel.text = String(format: "%.2f", basePrice)
         }
         
         if let country = currency?.country {

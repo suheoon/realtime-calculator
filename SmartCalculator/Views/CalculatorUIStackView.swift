@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol ButtonDelegate: AnyObject {
+    func buttonTapped(_: UIButton)
+}
+
 enum CalculatorButtonType: Int {
     case zero, dot, delete, plus
     case one, two, three, minus
@@ -15,10 +19,12 @@ enum CalculatorButtonType: Int {
 }
 
 final class CalculatorUIStackView: UIStackView {
-    
     // from, to currnecy를 모두 원 단위로 바꾸고 from / to 를 하면 계산가능
+    var from: Int = 0
+    var to: Int = 0
     
     var working: String = ""
+    weak var delegate: ButtonDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -189,7 +195,7 @@ final class CalculatorUIStackView: UIStackView {
                 button.setPreferredSymbolConfiguration(.init(pointSize: 13), forImageIn: .normal)
                 button.semanticContentAttribute = .forceRightToLeft
                 button.tag = 16
-                //                button.addTarget(self, action: #selector(test(_:)), for: .touchUpInside)
+                button.addTarget(self, action: #selector(test(_:)), for: .touchUpInside)
                 return button
             }()
             
@@ -411,8 +417,10 @@ final class CalculatorUIStackView: UIStackView {
         toResultLabel.text = "0.0"
     }
     
+    @objc func test(_ sender: UIButton) {
+        delegate?.buttonTapped(sender)
+    }
     
-    // 계산기 로직, 추후 분리할것
     private func update(of working: inout String, with operators: String) {
         if operators == "+" || operators == "-" || operators == "/" || operators == "×" || operators == "."{
             if let last = working.last {

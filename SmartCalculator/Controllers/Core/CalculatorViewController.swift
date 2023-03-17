@@ -9,6 +9,8 @@ import UIKit
 
 final class CalculatorViewController: UIViewController {
     
+    weak var delegate: ButtonDelegate?
+    
     private lazy var calculatorView = {
         let calculatorView = CalculatorUIStackView(frame: .zero)
         calculatorView.translatesAutoresizingMaskIntoConstraints = false
@@ -20,6 +22,7 @@ final class CalculatorViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        calculatorView.delegate = self
         view.backgroundColor = .systemBackground
         view.addSubview(calculatorView)
         
@@ -49,3 +52,12 @@ final class CalculatorViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: label)
     }
 }
+
+extension CalculatorViewController: ButtonDelegate {
+    func buttonTapped(_: UIButton) {
+        let currencySelectionViewController = CurrencySelectionViewController()
+        currencySelectionViewController.modalPresentationStyle = .formSheet
+        self.present(currencySelectionViewController, animated: true, completion: nil)
+    }
+}
+
