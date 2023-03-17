@@ -145,20 +145,19 @@
 		745004AF29A49A4100945D22 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				745004B029A49A6900945D22 /* Core */,
+				745004AB29A49A0A00945D22 /* TabBarViewController.swift */,
+				7469A81829C469D3005E6C6A /* Calculator */,
+				745004B029A49A6900945D22 /* ExchangeRate */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		745004B029A49A6900945D22 /* Core */ = {
+		745004B029A49A6900945D22 /* ExchangeRate */ = {
 			isa = PBXGroup;
 			children = (
-				745004AB29A49A0A00945D22 /* TabBarViewController.swift */,
-				745004B129A49C0C00945D22 /* CalculatorViewController.swift */,
 				745004B329A49C5500945D22 /* ExchangeRateViewController.swift */,
-				7469A81229C32663005E6C6A /* CurrencySelectionViewController.swift */,
 			);
-			path = Core;
+			path = ExchangeRate;
 			sourceTree = "<group>";
 		};
 		745004B529A49F0300945D22 /* Global */ = {
@@ -191,6 +190,15 @@
 				745C155C29BB7289006CAE86 /* ImageCacheManager.swift */,
 			);
 			path = Cache;
+			sourceTree = "<group>";
+		};
+		7469A81829C469D3005E6C6A /* Calculator */ = {
+			isa = PBXGroup;
+			children = (
+				745004B129A49C0C00945D22 /* CalculatorViewController.swift */,
+				7469A81229C32663005E6C6A /* CurrencySelectionViewController.swift */,
+			);
+			path = Calculator;
 			sourceTree = "<group>";
 		};
 		74FD861B29ACCB4400FD8925 /* Fonts */ = {

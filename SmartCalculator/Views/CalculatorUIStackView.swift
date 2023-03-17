@@ -195,7 +195,7 @@ final class CalculatorUIStackView: UIStackView {
                 button.setPreferredSymbolConfiguration(.init(pointSize: 13), forImageIn: .normal)
                 button.semanticContentAttribute = .forceRightToLeft
                 button.tag = 16
-                button.addTarget(self, action: #selector(test(_:)), for: .touchUpInside)
+                button.addTarget(self, action: #selector(selectionButtonTapped(_:)), for: .touchUpInside)
                 return button
             }()
             
@@ -307,7 +307,7 @@ final class CalculatorUIStackView: UIStackView {
                 button.setPreferredSymbolConfiguration(.init(pointSize: 13), forImageIn: .normal)
                 button.semanticContentAttribute = .forceRightToLeft
                 button.tag = 19
-//                button.addTarget(self, action: #selector(test(_:)), for: .touchUpInside)
+                button.addTarget(self, action: #selector(selectionButtonTapped(_:)), for: .touchUpInside)
                 return button
             }()
             
@@ -417,7 +417,7 @@ final class CalculatorUIStackView: UIStackView {
         toResultLabel.text = "0.0"
     }
     
-    @objc func test(_ sender: UIButton) {
+    @objc func selectionButtonTapped(_ sender: UIButton) {
         delegate?.buttonTapped(sender)
     }
     

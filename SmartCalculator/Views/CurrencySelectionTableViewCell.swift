@@ -97,8 +97,8 @@ class CurrencySelectionTableViewCell: UITableViewCell {
         let containerStackVeiwConstraints = [
             containerStackVeiw.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             containerStackVeiw.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            containerStackVeiw.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            containerStackVeiw.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
+            containerStackVeiw.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
+            containerStackVeiw.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20),
         ]
         NSLayoutConstraint.activate(containerStackVeiwConstraints)
     }

@@ -12,6 +12,14 @@ class CurrencySelectionViewController: UIViewController {
     let currencyManger = CurrencyManager.shared
     var currencyArrays: [Currency] = []
     
+    private let searchController: UISearchController = {
+        
+        let controller = UISearchController(searchResultsController: nil)
+        controller.searchBar.placeholder = "국가 또는 통화명을 입력해 주세요"
+        controller.searchBar.searchBarStyle = .minimal
+        return controller
+    }()
+    
     private let selectionTable: UITableView = {
         let table = UITableView()
         table.translatesAutoresizingMaskIntoConstraints = false
@@ -23,14 +31,15 @@ class CurrencySelectionViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         view.addSubview(selectionTable)
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
         setupData()
         setupSelectionTable()
-//        applyConstraints()
+        configureNavBar()
+        applyConstraints()
     }
     
-    override func viewDidLayoutSubviews() {
-        selectionTable.frame = view.bounds
-    }
+
     
     private func setupData() {
         currencyArrays = currencyManger.getCurrencyArraysFromAPI()
@@ -52,6 +61,14 @@ class CurrencySelectionViewController: UIViewController {
         ]
         
         NSLayoutConstraint.activate(selectionTableConstraints)
+    }
+    
+    private func configureNavBar() {
+        let textLabel = UILabel()
+        textLabel.textColor = UIColor.label
+        textLabel.text = "환율선택"
+        textLabel.font = UIFont.Pretendard(.semiaBold, size: 15)
+        self.navigationItem.titleView = textLabel
     }
 }
 
