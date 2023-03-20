@@ -40,10 +40,6 @@ final class CalculatorViewController: UIViewController {
         setupData()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        print(from)
-    }
-    
     private func setupData() {
         currencyArrays = currencyManger.getCurrencyArraysFromAPI()
     }
@@ -175,9 +171,28 @@ final class CalculatorViewController: UIViewController {
     }
 }
 
+// custom delegate패턴
 extension CalculatorViewController: ButtonDelegate {
-    func selectionButtonTapped(_: UIButton) {
+    func selectionButtonTapped(_ sender: UIButton) {
         let currencySelectionViewController = CurrencySelectionViewController()
+
+        if (sender.tag == 16) {
+            // from 버튼일 때
+            currencySelectionViewController.completion = { [weak self] data in
+                self?.from = data
+                if let currencyCode = self?.currencyArrays[data].currencyCode {
+                    sender.setTitle("\(currencyCode)", for: .normal)
+                }
+            }
+        } else if (sender.tag == 19) {
+            // to 버튼일 때
+            currencySelectionViewController.completion = { [weak self ]data in
+                self?.to = data
+                if let currencyCode = self?.currencyArrays[data].currencyCode {
+                    sender.setTitle("\(currencyCode)", for: .normal)
+                }
+            }
+        }
         self.navigationController?.pushViewController(currencySelectionViewController, animated: false)
     }
     

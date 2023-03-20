@@ -8,6 +8,7 @@
 import UIKit
 
 class CurrencySelectionViewController: UIViewController {
+    var completion: ((Int) -> Void)?
     
     let currencyManger = CurrencyManager.shared
     var currencyArrays: [Currency] = []
@@ -37,8 +38,6 @@ class CurrencySelectionViewController: UIViewController {
         configureNavBar()
         applyConstraints()
     }
-    
-    
     
     private func setupData() {
         currencyArrays = currencyManger.getCurrencyArraysFromAPI()
@@ -106,7 +105,8 @@ extension CurrencySelectionViewController: UITableViewDelegate, UITableViewDataS
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        completion?(indexPath.row)
+        navigationController?.popViewController(animated: true)
     }
 }
 

@@ -8,7 +8,7 @@
 import UIKit
 
 protocol ButtonDelegate: AnyObject {
-    func selectionButtonTapped(_: UIButton)
+    func selectionButtonTapped(_ sender: UIButton)
     func tapCalculatorButton(_ sender: UIButton)
     func clearAll(_ sender: UIButton)
 }
@@ -352,6 +352,10 @@ final class CalculatorUIStackView: UIStackView {
         self.addArrangedSubview(horizonalStacVeiw)
     }
     
+    @objc func selectionButtonTapped(_ sender: UIButton) {
+        delegate?.selectionButtonTapped(sender)
+    }
+    
     @objc func tapCalculatorButton(_ sender: UIButton) {
         delegate?.tapCalculatorButton(sender)
     }
@@ -360,7 +364,4 @@ final class CalculatorUIStackView: UIStackView {
         delegate?.clearAll(sender)
     }
     
-    @objc func selectionButtonTapped(_ sender: UIButton) {
-        delegate?.selectionButtonTapped(sender)
-    }
 }

@@ -134,8 +134,8 @@
 		745004AE29A49A3800945D22 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				74C291E129C893FF00664A07 /* ExchangeRate */,
 				74C291E029C893F200664A07 /* Calculator */,
+				74C291E129C893FF00664A07 /* ExchangeRate */,
 			);
 			path = Views;
 			sourceTree = "<group>";
