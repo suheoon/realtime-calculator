@@ -22,7 +22,7 @@ final class CurrencyService {
     typealias NetworkCompletion = (Result<[Currency], NetworkError>) -> Void
     
     func fetchCurrency(completion: @escaping NetworkCompletion) {
-        let urlString = Storage().requestUrl
+        let urlString = RequestUrl().currencyRequestUrl
         perfromRequest(with: urlString) { result in
             completion(result)
         }
