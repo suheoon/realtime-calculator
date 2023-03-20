@@ -94,7 +94,7 @@
 		7450048829A4995E00945D22 = {
 			isa = PBXGroup;
 			children = (
-				7450049329A4995E00945D22 /* SmartCalculator */,
+				7450049329A4995E00945D22 /* RealTimeCalculator */,
 				7450049229A4995E00945D22 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -107,7 +107,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		7450049329A4995E00945D22 /* SmartCalculator */ = {
+		7450049329A4995E00945D22 /* RealTimeCalculator */ = {
 			isa = PBXGroup;
 			children = (
 				745004B529A49F0300945D22 /* Global */,
@@ -121,7 +121,7 @@
 				745004A529A4995F00945D22 /* Info.plist */,
 				7450049D29A4995E00945D22 /* SmartCalculator.xcdatamodeld */,
 			);
-			path = SmartCalculator;
+			path = RealTimeCalculator;
 			sourceTree = "<group>";
 		};
 		745004AD29A49A2C00945D22 /* Models */ = {
@@ -287,7 +287,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 7450048C29A4995E00945D22 /* Build configuration list for PBXProject "SmartCalculator" */;
+			buildConfigurationList = 7450048C29A4995E00945D22 /* Build configuration list for PBXProject "RealTimeCalculator" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -493,7 +493,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = F9GU92M4V2;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SmartCalculator/Info.plist;
+				INFOPLIST_FILE = RealTimeCalculator/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -504,7 +504,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.suheon.SmartCalculator;
+				PRODUCT_BUNDLE_IDENTIFIER = com.suheon.RealTimeCalculator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -521,7 +521,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = F9GU92M4V2;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SmartCalculator/Info.plist;
+				INFOPLIST_FILE = RealTimeCalculator/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -532,7 +532,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.suheon.SmartCalculator;
+				PRODUCT_BUNDLE_IDENTIFIER = com.suheon.RealTimeCalculator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -543,7 +543,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7450048C29A4995E00945D22 /* Build configuration list for PBXProject "SmartCalculator" */ = {
+		7450048C29A4995E00945D22 /* Build configuration list for PBXProject "RealTimeCalculator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				745004A629A4995F00945D22 /* Debug */,

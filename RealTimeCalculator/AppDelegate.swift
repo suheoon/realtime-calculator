@@ -15,6 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let networkMonitor = NetworkMonitor()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        // 네트워크 모니터링 시작
         networkMonitor.startMonitoring()
         
         let dispatchGroup = DispatchGroup()
@@ -24,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         dispatchGroup.wait()
         
+        // 환율정보를 받아 온 후 모니터링 종료
         networkMonitor.stopMonitoring()
         
         window = UIWindow()
