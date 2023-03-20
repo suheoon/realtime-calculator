@@ -134,10 +134,8 @@
 		745004AE29A49A3800945D22 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				745004B929A4B10500945D22 /* CalculatorUIStackView.swift */,
-				745C155929B9FF69006CAE86 /* ExchangeRateCollectionViewCell.swift */,
-				748D65DA29BF3A90003F58D2 /* ExchangeRateCollectionViewHeader.swift */,
-				7469A81429C43044005E6C6A /* CurrencySelectionTableViewCell.swift */,
+				74C291E129C893FF00664A07 /* ExchangeRate */,
+				74C291E029C893F200664A07 /* Calculator */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -199,6 +197,24 @@
 				7469A81229C32663005E6C6A /* CurrencySelectionViewController.swift */,
 			);
 			path = Calculator;
+			sourceTree = "<group>";
+		};
+		74C291E029C893F200664A07 /* Calculator */ = {
+			isa = PBXGroup;
+			children = (
+				745004B929A4B10500945D22 /* CalculatorUIStackView.swift */,
+				7469A81429C43044005E6C6A /* CurrencySelectionTableViewCell.swift */,
+			);
+			path = Calculator;
+			sourceTree = "<group>";
+		};
+		74C291E129C893FF00664A07 /* ExchangeRate */ = {
+			isa = PBXGroup;
+			children = (
+				745C155929B9FF69006CAE86 /* ExchangeRateCollectionViewCell.swift */,
+				748D65DA29BF3A90003F58D2 /* ExchangeRateCollectionViewHeader.swift */,
+			);
+			path = ExchangeRate;
 			sourceTree = "<group>";
 		};
 		74FD861B29ACCB4400FD8925 /* Fonts */ = {

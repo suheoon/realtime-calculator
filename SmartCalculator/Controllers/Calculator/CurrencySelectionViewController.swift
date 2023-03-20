@@ -15,7 +15,6 @@ class CurrencySelectionViewController: UIViewController {
     var searchTimer: Timer?
     
     private let searchController: UISearchController = {
-        
         let controller = UISearchController(searchResultsController: nil)
         controller.searchBar.placeholder = "국가 또는 통화명을 입력해 주세요"
         controller.searchBar.searchBarStyle = .minimal
@@ -48,6 +47,7 @@ class CurrencySelectionViewController: UIViewController {
     private func setupSearchBar() {
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
+        searchController.searchBar.setValue("취소", forKey: "cancelButtonText")
         searchController.searchBar.delegate = self
     }
     
