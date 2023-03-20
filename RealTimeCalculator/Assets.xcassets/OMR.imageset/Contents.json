@@ -6,10 +6,12 @@
       "scale" : "1x"
     },
     {
+      "filename" : "OMR 1.svg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "OMR 2.svg",
       "idiom" : "universal",
       "scale" : "3x"
     }

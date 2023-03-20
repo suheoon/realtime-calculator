@@ -6,10 +6,12 @@
       "scale" : "1x"
     },
     {
+      "filename" : "VND 1.svg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "VND 2.svg",
       "idiom" : "universal",
       "scale" : "3x"
     }
