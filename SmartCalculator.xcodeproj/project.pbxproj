@@ -25,6 +25,7 @@
 		7472CB6929AA15D70097DBFC /* CALayerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7472CB6829AA15D70097DBFC /* CALayerExtension.swift */; };
 		7472CB6B29AA1BEE0097DBFC /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7472CB6A29AA1BEE0097DBFC /* UIViewExtension.swift */; };
 		748D65DB29BF3A90003F58D2 /* ExchangeRateCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748D65DA29BF3A90003F58D2 /* ExchangeRateCollectionViewHeader.swift */; };
+		74C291E329C8ACC800664A07 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C291E229C8ACC800664A07 /* NetworkMonitor.swift */; };
 		74FD862529ACCB5800FD8925 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 74FD861C29ACCB5700FD8925 /* Pretendard-Medium.otf */; };
 		74FD862629ACCB5800FD8925 /* Pretendard-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 74FD861D29ACCB5700FD8925 /* Pretendard-ExtraBold.otf */; };
 		74FD862729ACCB5800FD8925 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 74FD861E29ACCB5700FD8925 /* Pretendard-Bold.otf */; };
@@ -62,6 +63,7 @@
 		7472CB6829AA15D70097DBFC /* CALayerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayerExtension.swift; sourceTree = "<group>"; };
 		7472CB6A29AA1BEE0097DBFC /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		748D65DA29BF3A90003F58D2 /* ExchangeRateCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateCollectionViewHeader.swift; sourceTree = "<group>"; };
+		74C291E229C8ACC800664A07 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		74FD861C29ACCB5700FD8925 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
 		74FD861D29ACCB5700FD8925 /* Pretendard-ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-ExtraBold.otf"; sourceTree = "<group>"; };
 		74FD861E29ACCB5700FD8925 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
@@ -237,6 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				74FD863329B06A6C00FD8925 /* CurrencyService.swift */,
+				74C291E229C8ACC800664A07 /* NetworkMonitor.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -339,6 +342,7 @@
 				7472CB6B29AA1BEE0097DBFC /* UIViewExtension.swift in Sources */,
 				74FD863929B06E1700FD8925 /* Constants.swift in Sources */,
 				745C155A29B9FF69006CAE86 /* ExchangeRateCollectionViewCell.swift in Sources */,
+				74C291E329C8ACC800664A07 /* NetworkMonitor.swift in Sources */,
 				745004B229A49C0C00945D22 /* CalculatorViewController.swift in Sources */,
 				7469A81529C43044005E6C6A /* CurrencySelectionTableViewCell.swift in Sources */,
 				745004BC29A4D74000945D22 /* UITabBarExtension.swift in Sources */,

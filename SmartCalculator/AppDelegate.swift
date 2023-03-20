@@ -12,8 +12,10 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     let currencyManger = CurrencyManager.shared
+    let networkMonitor = NetworkMonitor()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        networkMonitor.startMonitoring()
         
         let dispatchGroup = DispatchGroup()
         dispatchGroup.enter()
@@ -21,6 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             dispatchGroup.leave()
         }
         dispatchGroup.wait()
+        
+        networkMonitor.stopMonitoring()
         
         window = UIWindow()
         window?.rootViewController = TabBarViewController()
