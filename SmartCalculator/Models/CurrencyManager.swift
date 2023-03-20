@@ -15,7 +15,7 @@ final class CurrencyManager {
     
     private let currencyService = CurrencyService.shared
     
-    private var currencyArrays: [Currency] = [Currency(currencyCode: "KRW", country: "대한민국", basePrice: 1, change: "EVEN", changePrice: 0)]
+    private var currencyArrays: [Currency] = [Currency(currencyCode: "KRW", country: "대한민국", basePrice: 1, change: "EVEN", changePrice: 0, currencyUnit: 1)]
     
     func getCurrencyArraysFromAPI() -> [Currency] {
         return currencyArrays

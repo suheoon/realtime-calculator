@@ -141,12 +141,12 @@ final class CalculatorViewController: UIViewController {
         return postfix
     }
     
-    private func calculate(_ postfix: [String]) -> Float {
-        var stack = [Float]()
+    private func calculate(_ postfix: [String]) -> Double {
+        var stack = [Double]()
         
         for item in postfix {
             if item != "+" && item != "-" && item != "/" && item != "×" {
-                stack.append((item as NSString).floatValue)
+                stack.append((item as NSString).doubleValue)
             } else {
                 if var opperand2 = stack.popLast(), let opperand1 = stack.popLast() {
                     switch item {
@@ -169,6 +169,17 @@ final class CalculatorViewController: UIViewController {
         
         return stack.popLast() ?? 0
     }
+    
+    private func clear() {
+        let workingLabel = calculatorView.viewWithTag(17) as! UILabel
+        let fromResultLabel = calculatorView.viewWithTag(18) as! UILabel
+        let toResultLabel = calculatorView.viewWithTag(20) as! UILabel
+        
+        calculatorView.working = ""
+        workingLabel.text = calculatorView.working
+        fromResultLabel.text = "0"
+        toResultLabel.text = "0.00"
+    }
 }
 
 // custom delegate패턴
@@ -183,6 +194,7 @@ extension CalculatorViewController: ButtonDelegate {
                 if let currencyCode = self?.currencyArrays[data].currencyCode {
                     sender.setTitle("\(currencyCode)", for: .normal)
                 }
+                self?.clear()
             }
         } else if (sender.tag == 19) {
             // to 버튼일 때
@@ -191,6 +203,7 @@ extension CalculatorViewController: ButtonDelegate {
                 if let currencyCode = self?.currencyArrays[data].currencyCode {
                     sender.setTitle("\(currencyCode)", for: .normal)
                 }
+                self?.clear()
             }
         }
         self.navigationController?.pushViewController(currencySelectionViewController, animated: false)
@@ -242,10 +255,11 @@ extension CalculatorViewController: ButtonDelegate {
         }
         
         let result = calculate(convertInfixToPostfix(calculatorView.working))
+        guard let fromBasePrice = currencyArrays[from].basePrice, let toBasePrice = currencyArrays[to].basePrice, let currencyUnit = currencyArrays[from].currencyUnit else { return }
         
         workingLabel.text = calculatorView.working
-        fromResultLabel.text = String(describing: result)
-        toResultLabel.text = String(describing: result)
+        fromResultLabel.text = String(format: "%.f", result)
+        toResultLabel.text = String(format: "%.2f",result * fromBasePrice / toBasePrice / Double(currencyUnit))
     }
     
     func clearAll(_ sender: UIButton) {
@@ -255,8 +269,8 @@ extension CalculatorViewController: ButtonDelegate {
         
         calculatorView.working = ""
         workingLabel.text = calculatorView.working
-        fromResultLabel.text = "0.0"
-        toResultLabel.text = "0.0"
+        fromResultLabel.text = "0"
+        toResultLabel.text = "0.00"
     }
 }
 

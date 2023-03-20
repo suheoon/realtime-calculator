@@ -57,3 +57,9 @@ struct Currency: Codable {
     }
     
 }
+
+extension Currency: Equatable {
+    public static func == (lhs: Currency, rhs: Currency) -> Bool {
+        return lhs.currencyCode == rhs.currencyCode
+    }
+}

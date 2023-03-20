@@ -228,7 +228,7 @@ final class CalculatorUIStackView: UIStackView {
             let label2: UILabel = {
                 let label = UILabel()
                 label.translatesAutoresizingMaskIntoConstraints = false
-                label.text = "0.0"
+                label.text = "0"
                 label.textColor = .label
                 label.textAlignment = .right
                 label.font = UIFont.Pretendard(.regular, size: 25)
@@ -329,7 +329,7 @@ final class CalculatorUIStackView: UIStackView {
             let label: UILabel = {
                 let label = UILabel()
                 label.translatesAutoresizingMaskIntoConstraints = false
-                label.text = "0.0"
+                label.text = "0.00"
                 label.textColor = .label
                 label.textAlignment = .right
                 label.font = UIFont.Pretendard(.regular, size: 25)

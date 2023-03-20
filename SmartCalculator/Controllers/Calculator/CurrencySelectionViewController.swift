@@ -105,7 +105,11 @@ extension CurrencySelectionViewController: UITableViewDelegate, UITableViewDataS
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        completion?(indexPath.row)
+        if searchController.isActive {
+            completion?(currencyArrays.firstIndex(of: filteredContents[indexPath.row]) ?? 0)
+        } else {
+            completion?(indexPath.row)
+        }
         navigationController?.popViewController(animated: true)
     }
 }
