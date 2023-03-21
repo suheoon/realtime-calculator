@@ -41,6 +41,7 @@ class CurrencySelectionViewController: UIViewController {
     
     private func setupData() {
         currencyArrays = currencyManger.getCurrencyArraysFromAPI()
+        filteredContents = currencyArrays
     }
     
     private func setupSearchBar() {
