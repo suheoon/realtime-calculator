@@ -49,6 +49,7 @@ final class CoreDataManager {
                 
                 if let currencySaved = NSManagedObject(entity: entity, insertInto: context) as? CurrencySaved {
                     
+                    currencySaved.saveDate = Date()
                     currencySaved.currencyCode = currency.currencyCode
                     currencySaved.currencyName = currency.currencyName
                     currencySaved.country = currency.country

@@ -141,9 +141,9 @@
 			children = (
 				74FD863029B066C500FD8925 /* Currency.swift */,
 				74FD863529B06C5E00FD8925 /* CurrencyManager.swift */,
-				742A6C4B29D5BA76008F3B80 /* CoreDataManager.swift */,
 				742A6C4D29D5BC2A008F3B80 /* CurrencySaved+CoreDataClass.swift */,
 				742A6C4E29D5BC2A008F3B80 /* CurrencySaved+CoreDataProperties.swift */,
+				742A6C4B29D5BA76008F3B80 /* CoreDataManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
