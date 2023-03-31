@@ -11,8 +11,18 @@ final class ExchangeRateViewController: UIViewController {
     
     let currencyFetcher = CurrencyFetcher.shared
     var currencyArrays: [Currency] = []
+    var filteredContents: [Currency] = []
+    var searchTimer: Timer?
     
-    private lazy var exchangeRatecollectionVeiw: UICollectionView = {
+    let searchController: UISearchController = {
+        let controller = UISearchController(searchResultsController: nil)
+        controller.searchBar.placeholder = "국가 또는 통화명을 입력해 주세요"
+        controller.searchBar.searchBarStyle = .minimal
+        return controller
+    }()
+    
+    // ExchangeRateViewController가 생성 된 후 변수 접근시 초기화 (self.compositionalLayout)
+    lazy var exchangeRatecollectionVeiw: UICollectionView = {
         let collectionView =  UICollectionView(frame: .zero, collectionViewLayout: self.compositionalLayout)
         collectionView.isScrollEnabled = true
         collectionView.showsVerticalScrollIndicator = true
@@ -25,15 +35,11 @@ final class ExchangeRateViewController: UIViewController {
         return collectionView
     }()
     
-    private let compositionalLayout: UICollectionViewCompositionalLayout = {
+    let compositionalLayout: UICollectionViewCompositionalLayout = {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
-        
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0 / 10.0))
-        
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
-        
         let section = NSCollectionLayoutSection(group: group)
         
         return UICollectionViewCompositionalLayout(section: section)
@@ -53,6 +59,7 @@ final class ExchangeRateViewController: UIViewController {
         view.addSubview(exchangeRatecollectionVeiw)
         setupData()
         configureNavBar()
+        setupSearchBar()
         setupCollectionView()
         applyConstraints()
     }
@@ -97,23 +104,61 @@ final class ExchangeRateViewController: UIViewController {
         self.navigationItem.titleView = label
     }
     
+    private func setupSearchBar() {
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+        searchController.searchBar.setValue("취소", forKey: "cancelButtonText")
+        searchController.searchBar.delegate = self
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.searchBar.showsCancelButton = false
+    }
+    
 }
 
 extension ExchangeRateViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        currencyArrays.count
+        if searchController.isActive {
+            return filteredContents.count
+        } else {
+            return currencyArrays.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = exchangeRatecollectionVeiw.dequeueReusableCell(withReuseIdentifier: ExchangeRateCollectionViewCell.identifier, for: indexPath) as! ExchangeRateCollectionViewCell
+        guard let cell = exchangeRatecollectionVeiw.dequeueReusableCell(withReuseIdentifier: ExchangeRateCollectionViewCell.identifier, for: indexPath) as? ExchangeRateCollectionViewCell else {
+            return UICollectionViewCell()
+        }
         
-        var currency = currencyArrays[indexPath.row]
+        var currency = searchController.isActive ? filteredContents[indexPath.row] :  currencyArrays[indexPath.row]
         currency.country = currency.country ?? currency.countryName
-        
         cell.currency = currency
         
         return cell
+    }
+}
+
+extension ExchangeRateViewController: UISearchBarDelegate { 
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        let searchText = searchController.searchBar.text ?? ""
+        // 디바운싱 적용
+        searchTimer?.invalidate()
+        searchTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { [weak self] _ in
+            self?.search(for: searchText)
+        })
+
+    }
+    
+    func search(for searchText: String) {
+        if searchText.isEmpty {
+            filteredContents = currencyArrays
+        } else {
+            filteredContents = currencyArrays.filter({
+                guard let country = $0.country, let currencyCode = $0.currencyCode else { return false }
+                return country.lowercased().contains(searchText.lowercased()) || currencyCode.lowercased().contains(searchText.lowercased())
+            })
+        }
+        exchangeRatecollectionVeiw.reloadData()
     }
 }

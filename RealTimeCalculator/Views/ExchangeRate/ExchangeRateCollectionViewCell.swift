@@ -130,15 +130,14 @@ final class ExchangeRateCollectionViewCell: UICollectionViewCell {
         configureUI()
     }
     
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         
         separatorView.frame = CGRect(x: 0, y: contentView.bounds.maxY - 1, width: contentView.bounds.width, height: 1)
-    }
-    
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     override func prepareForReuse() {
@@ -211,7 +210,7 @@ final class ExchangeRateCollectionViewCell: UICollectionViewCell {
         NSLayoutConstraint.activate(containerStackVeiwConstraints)
     }
     
-    func setImage(_ name: String) {
+    private func setImage(_ name: String) {
         let cacheKey = NSString(string: name)
         
         if let cachedImage = ImageCacheManager.shared.object(forKey: cacheKey) {

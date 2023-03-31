@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CurrencySelectionViewController: UIViewController {
+final class CurrencySelectionViewController: UIViewController {
     var completion: ((Int) -> Void)?
     
     let currencyFetcher = CurrencyFetcher.shared
@@ -15,14 +15,14 @@ class CurrencySelectionViewController: UIViewController {
     var filteredContents: [Currency] = []
     var searchTimer: Timer?
     
-    private let searchController: UISearchController = {
+    let searchController: UISearchController = {
         let controller = UISearchController(searchResultsController: nil)
         controller.searchBar.placeholder = "국가 또는 통화명을 입력해 주세요"
         controller.searchBar.searchBarStyle = .minimal
         return controller
     }()
     
-    private let selectionTable: UITableView = {
+    let selectionTable: UITableView = {
         let table = UITableView()
         table.translatesAutoresizingMaskIntoConstraints = false
         return table
@@ -94,7 +94,6 @@ extension CurrencySelectionViewController: UITableViewDelegate, UITableViewDataS
 
         
         var currency = searchController.isActive ? filteredContents[indexPath.row] :  currencyArrays[indexPath.row]
-        
         currency.country = currency.country ?? currency.countryName
         cell.currency = currency
         
