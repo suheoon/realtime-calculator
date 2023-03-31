@@ -140,5 +140,6 @@ extension CurrencySelectionViewController: UISearchBarDelegate {
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         filteredContents = currencyArrays
+        selectionTable.reloadData()
     }
 }

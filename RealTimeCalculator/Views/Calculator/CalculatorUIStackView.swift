@@ -155,7 +155,7 @@ final class CalculatorUIStackView: UIStackView {
     
     // from UI설정
     private func configureFromDisplayUI() {
-        let horizonalStacVeiw: UIStackView = {
+        let horizontalStackView: UIStackView = {
             let stackView = UIStackView()
             stackView.translatesAutoresizingMaskIntoConstraints = false
             stackView.axis = .horizontal
@@ -165,24 +165,13 @@ final class CalculatorUIStackView: UIStackView {
             return stackView
         }()
         
-        let view1: UIView = {
+        let currencySelectionView: UIView = {
             let view = UIView()
             view.translatesAutoresizingMaskIntoConstraints = false
             view.backgroundColor = .systemBackground
             view.addBorder(.top, color: .gray, thickness: 0.3)
             view.addBorder(.bottom, color: .gray, thickness: 0.3)
             
-            let horizonalStacVeiw: UIStackView = {
-                let stackView = UIStackView()
-                stackView.translatesAutoresizingMaskIntoConstraints = false
-                stackView.axis = .horizontal
-                stackView.spacing = 5
-                stackView.alignment = .center
-                
-                return stackView
-            }()
-            
-            // from 버튼
             let button: UIButton = {
                 let button = UIButton()
                 button.translatesAutoresizingMaskIntoConstraints = false
@@ -198,24 +187,23 @@ final class CalculatorUIStackView: UIStackView {
                 return button
             }()
             
-            horizonalStacVeiw.addArrangedSubview(button)
-            view.addSubview(horizonalStacVeiw)
+            view.addSubview(button)
             
             view.widthAnchor.constraint(equalToConstant: Screen.screenWidth / 4).isActive = true
-            horizonalStacVeiw.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-            horizonalStacVeiw.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+            button.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+            button.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
             
             return view
         }()
         
-        let view2: UIView = {
+        let numberDisplayView: UIView = {
             let view = UIView()
             view.translatesAutoresizingMaskIntoConstraints = false
             view.backgroundColor = .systemBackground
             view.addBorder(.top, color: .gray, thickness: 0.3)
             view.addBorder(.bottom, color: .gray, thickness: 0.3)
             
-            let label1: UILabel = {
+            let workingLabel: UILabel = {
                 let label = UILabel()
                 label.translatesAutoresizingMaskIntoConstraints = false
                 label.text = ""
@@ -225,7 +213,7 @@ final class CalculatorUIStackView: UIStackView {
                 label.tag = 17
                 return label
             }()
-            let label2: UILabel = {
+            let resultLabel: UILabel = {
                 let label = UILabel()
                 label.translatesAutoresizingMaskIntoConstraints = false
                 label.text = "0"
@@ -246,8 +234,8 @@ final class CalculatorUIStackView: UIStackView {
                 return stackView
             }()
             
-            verticalStackVeiw.addArrangedSubview(label1)
-            verticalStackVeiw.addArrangedSubview(label2)
+            verticalStackVeiw.addArrangedSubview(workingLabel)
+            verticalStackVeiw.addArrangedSubview(resultLabel)
             
             view.addSubview(verticalStackVeiw)
             
@@ -260,15 +248,15 @@ final class CalculatorUIStackView: UIStackView {
             return view
         }()
         
-        horizonalStacVeiw.addArrangedSubview(view1)
-        horizonalStacVeiw.addArrangedSubview(view2)
+        horizontalStackView.addArrangedSubview(currencySelectionView)
+        horizontalStackView.addArrangedSubview(numberDisplayView)
         
-        self.addArrangedSubview(horizonalStacVeiw)
+        self.addArrangedSubview(horizontalStackView)
     }
     
     // TO UI설정
     private func configureToDisplayUI() {
-        let horizonalStacVeiw: UIStackView = {
+        let horizontalStackView: UIStackView = {
             let stackView = UIStackView()
             stackView.translatesAutoresizingMaskIntoConstraints = false
             stackView.axis = .horizontal
@@ -278,21 +266,11 @@ final class CalculatorUIStackView: UIStackView {
             return stackView
         }()
         
-        let view1: UIView = {
+        let currencySelectionView: UIView = {
             let view = UIView()
             view.translatesAutoresizingMaskIntoConstraints = false
             view.backgroundColor = .systemBackground
             view.addBorder(.bottom, color: .gray, thickness: 0.5)
-            
-            let horizonalStackVeiw: UIStackView = {
-                let stackView = UIStackView()
-                stackView.translatesAutoresizingMaskIntoConstraints = false
-                stackView.axis = .horizontal
-                stackView.spacing = 5
-                stackView.distribution = .fillProportionally
-                
-                return stackView
-            }()
             
             // to버튼
             let button: UIButton = {
@@ -310,18 +288,16 @@ final class CalculatorUIStackView: UIStackView {
                 return button
             }()
             
-            horizonalStackVeiw.addArrangedSubview(button)
-            
-            view.addSubview(horizonalStackVeiw)
+            view.addSubview(button)
             
             view.widthAnchor.constraint(equalToConstant: Screen.screenWidth / 4).isActive = true
-            horizonalStackVeiw.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-            horizonalStackVeiw.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+            button.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+            button.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
             
             return view
         }()
         
-        let view2: UIView = {
+        let resultDisplayView: UIView = {
             let view = UIView()
             view.addBorder(.bottom, color: .gray, thickness: 0.5)
             view.translatesAutoresizingMaskIntoConstraints = false
@@ -347,9 +323,9 @@ final class CalculatorUIStackView: UIStackView {
             return view
         }()
         
-        horizonalStacVeiw.addArrangedSubview(view1)
-        horizonalStacVeiw.addArrangedSubview(view2)
-        self.addArrangedSubview(horizonalStacVeiw)
+        horizontalStackView.addArrangedSubview(currencySelectionView)
+        horizontalStackView.addArrangedSubview(resultDisplayView)
+        self.addArrangedSubview(horizontalStackView)
     }
     
     @objc func selectionButtonTapped(_ sender: UIButton) {

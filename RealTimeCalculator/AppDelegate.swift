@@ -15,10 +15,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         let currencyFetcher = CurrencyFetcher.shared
-        let networkMonitor = NetworkMonitor()
-        
-        // 네트워크 모니터링 시작
-//        networkMonitor.startMonitoring()
         
         let dispatchGroup = DispatchGroup()
         dispatchGroup.enter()
@@ -26,10 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             dispatchGroup.leave()
         }
         dispatchGroup.wait()
-        
-        // 환율정보를 받아 온 후 모니터링 종료
-//        networkMonitor.stopMonitoring()
-        
         
         window = UIWindow()
         window?.rootViewController = TabBarViewController()
