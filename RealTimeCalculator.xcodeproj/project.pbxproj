@@ -104,8 +104,6 @@
 		742A6C5129D5C18F008F3B80 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				742A6C4D29D5BC2A008F3B80 /* CurrencySaved+CoreDataClass.swift */,
-				742A6C4E29D5BC2A008F3B80 /* CurrencySaved+CoreDataProperties.swift */,
 				742A6C4B29D5BA76008F3B80 /* CoreDataManager.swift */,
 			);
 			path = CoreData;
@@ -157,6 +155,8 @@
 			isa = PBXGroup;
 			children = (
 				74FD863029B066C500FD8925 /* Currency.swift */,
+				742A6C4D29D5BC2A008F3B80 /* CurrencySaved+CoreDataClass.swift */,
+				742A6C4E29D5BC2A008F3B80 /* CurrencySaved+CoreDataProperties.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";

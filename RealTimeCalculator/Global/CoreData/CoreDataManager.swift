@@ -11,40 +11,36 @@ import CoreData
 final class CoreDataManager {
     
     static let shared = CoreDataManager()
+    
+    let appDelegate = UIApplication.shared.delegate as? AppDelegate
+    lazy var context = appDelegate?.persistentContainer.viewContext
+    
     private init() {}
     
     let modelName: String = "CurrencySaved"
     
     func getCurrencyArrayFromCoreData() -> [CurrencySaved] {
-        
-        let appDelegate = UIApplication.shared.delegate as? AppDelegate
-        lazy var context = appDelegate?.persistentContainer.viewContext
-        
-        var savedCurrencyArray: [CurrencySaved] = []
+        var currencySavedArray: [CurrencySaved] = []
 
         if let context = context {
-
             let request = NSFetchRequest<NSManagedObject>(entityName: self.modelName)
 
             let savedDateOrder = NSSortDescriptor(key: "savedDate", ascending: true)
             request.sortDescriptors = [savedDateOrder]
             
             do {
-                if let fetchedCurrencyArray = try context.fetch(request) as? [CurrencySaved] {
-                    savedCurrencyArray = fetchedCurrencyArray
+                if let fetchedData = try context.fetch(request) as? [CurrencySaved] {
+                    currencySavedArray = fetchedData
                 }
             } catch {
                 print("fetch fail")
             }
         }
         
-        return savedCurrencyArray
+        return currencySavedArray
     }
     
-    func saveCurrency(_ currency: Currency) {
-        let appDelegate = UIApplication.shared.delegate as? AppDelegate
-        lazy var context = appDelegate?.persistentContainer.viewContext
-        
+    func saveCurrencyToCoreData(_ currency: Currency) {
         if let context = context {
             if let entity = NSEntityDescription.entity(forEntityName: self.modelName, in: context) {
                 if let currencySaved = NSManagedObject(entity: entity, insertInto: context) as? CurrencySaved {

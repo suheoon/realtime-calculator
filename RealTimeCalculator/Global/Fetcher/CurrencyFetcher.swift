@@ -35,7 +35,7 @@ final class CurrencyFetcher {
 //                }
 //                DispatchQueue.main.async {
 //                    for data in currencyDatas {
-//                        self.coredataManger.saveCurrency(data)
+//                        self.coredataManger.saveCurrencyToCoreData(data)
 //                    }
 //                }
                 completion()
