@@ -66,6 +66,7 @@ final class ExchangeRateViewController: UIViewController {
     
     private func setupData() {
         currencyArrays = currencyFetcher.getCurrencyArraysFromAPI()
+        filteredContents = currencyArrays
     }
     
     private func setupCollectionView() {
@@ -109,8 +110,7 @@ final class ExchangeRateViewController: UIViewController {
         navigationItem.hidesSearchBarWhenScrolling = false
         searchController.searchBar.setValue("취소", forKey: "cancelButtonText")
         searchController.searchBar.delegate = self
-        searchController.hidesNavigationBarDuringPresentation = false
-        searchController.searchBar.showsCancelButton = false
+        searchController.searchBar.tintColor = .label
     }
     
 }
@@ -159,6 +159,11 @@ extension ExchangeRateViewController: UISearchBarDelegate {
                 return country.lowercased().contains(searchText.lowercased()) || currencyCode.lowercased().contains(searchText.lowercased())
             })
         }
+        exchangeRatecollectionVeiw.reloadData()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        filteredContents = currencyArrays
         exchangeRatecollectionVeiw.reloadData()
     }
 }
