@@ -30,7 +30,6 @@ final class CoreDataManager {
             request.sortDescriptors = [savedDateOrder]
             
             do {
-                
                 if let fetchedCurrencyArray = try context.fetch(request) as? [CurrencySaved] {
                     savedCurrencyArray = fetchedCurrencyArray
                 }
@@ -56,9 +55,8 @@ final class CoreDataManager {
                     currencySaved.country = currency.country
                     currencySaved.date = currency.date
                     currencySaved.time = currency.time
-                    currencySaved.basePrice = currency.basePrice ?? 0.0
-                    currencySaved.openingPrice = currency.openingPrice ?? 0.0
                     currencySaved.change = currency.change
+                    currencySaved.basePrice = currency.basePrice ?? 0.0
                     currencySaved.changePrice = currency.changePrice ?? 0.0
                     currencySaved.usDollarRate = currency.usDollarRate ?? 0.0
                     currencySaved.currencyUnit = Int32(currency.currencyUnit ?? 0)
@@ -66,7 +64,6 @@ final class CoreDataManager {
                     if context.hasChanges {
                         do {
                             try context.save()
-                            print("success")
                         } catch {
                             print(error)
                         }

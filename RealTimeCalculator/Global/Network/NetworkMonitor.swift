@@ -8,7 +8,7 @@
 import Network
 import UIKit
 
-class NetworkMonitor {
+final class NetworkMonitor {
     let monitor = NWPathMonitor()
     var isMonitoring = false
     

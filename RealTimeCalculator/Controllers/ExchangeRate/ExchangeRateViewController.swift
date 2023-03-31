@@ -9,7 +9,7 @@ import UIKit
 
 final class ExchangeRateViewController: UIViewController {
     
-    let currencyManger = CurrencyManager.shared
+    let currencyFetcher = CurrencyFetcher.shared
     var currencyArrays: [Currency] = []
     
     private lazy var exchangeRatecollectionVeiw: UICollectionView = {
@@ -58,7 +58,7 @@ final class ExchangeRateViewController: UIViewController {
     }
     
     private func setupData() {
-        currencyArrays = currencyManger.getCurrencyArraysFromAPI()
+        currencyArrays = currencyFetcher.getCurrencyArraysFromAPI()
     }
     
     private func setupCollectionView() {

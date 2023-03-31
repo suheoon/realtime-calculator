@@ -10,7 +10,7 @@ import UIKit
 class CurrencySelectionViewController: UIViewController {
     var completion: ((Int) -> Void)?
     
-    let currencyManger = CurrencyManager.shared
+    let currencyFetcher = CurrencyFetcher.shared
     var currencyArrays: [Currency] = []
     var filteredContents: [Currency] = []
     var searchTimer: Timer?
@@ -40,7 +40,7 @@ class CurrencySelectionViewController: UIViewController {
     }
     
     private func setupData() {
-        currencyArrays = currencyManger.getCurrencyArraysFromAPI()
+        currencyArrays = currencyFetcher.getCurrencyArraysFromAPI()
         filteredContents = currencyArrays
     }
     

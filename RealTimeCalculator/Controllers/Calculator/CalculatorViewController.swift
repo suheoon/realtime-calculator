@@ -13,7 +13,7 @@ final class CalculatorViewController: UIViewController {
     var from: Int = 0
     var to: Int = 0
     
-    let currencyManger = CurrencyManager.shared
+    let currencyFetcher = CurrencyFetcher.shared
     var currencyArrays: [Currency] = []
     
     private lazy var calculatorView = {
@@ -41,7 +41,7 @@ final class CalculatorViewController: UIViewController {
     }
     
     private func setupData() {
-        currencyArrays = currencyManger.getCurrencyArraysFromAPI()
+        currencyArrays = currencyFetcher.getCurrencyArraysFromAPI()
     }
     
     private func setupLayout() {

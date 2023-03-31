@@ -7,17 +7,16 @@
 
 import Foundation
 
-final class CurrencyManager {
+final class CurrencyFetcher {
     
-    static let shared = CurrencyManager()
+    static let shared = CurrencyFetcher()
     
-    private let currencyService = CurrencyService.shared
-    private let coredataManger = CoreDataManager.shared
+    private let networkManager = NetworkManager.shared
+    private let coreDataManager = CoreDataManager.shared
     
     private var currencyArrays: [Currency] = [Currency(currencyCode: "KRW", country: "대한민국", basePrice: 1, change: "EVEN", changePrice: 0, currencyUnit: 1)]
 
-    
-    
+
     private init() {}
     
     func getCurrencyArraysFromAPI() -> [Currency] {
@@ -25,16 +24,15 @@ final class CurrencyManager {
     }
     
     func setupDatasFromAPI(completion: @escaping () -> Void) {
-        currencyService.fetchCurrency { result in
+        networkManager.getCurrency { result in
             switch result {
             case .success(let currencyDatas):
                 self.currencyArrays.append(contentsOf: currencyDatas)
-                DispatchQueue.main.async {
-                    let currencyData: [CurrencySaved] = self.coredataManger.getCurrencyArrayFromCoreData()
-                    for data in currencyData {
-                        print(data.country)
-                    }
-                }
+//                DispatchQueue.main.async {
+//                    let currencyData: [Currency] = self.coreDataManager.getCurrencyArrayFromCoreData().map({$0.convertToCurrency()})
+//
+//                    self.currencyArrays.append(contentsOf: currencyData)
+//                }
 //                DispatchQueue.main.async {
 //                    for data in currencyDatas {
 //                        self.coredataManger.saveCurrency(data)
@@ -47,7 +45,7 @@ final class CurrencyManager {
             }
         }
     }
-    
+     
     
     
 }

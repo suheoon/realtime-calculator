@@ -11,7 +11,7 @@ import CoreData
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
-    let currencyManger = CurrencyManager.shared
+    let currencyFetcher = CurrencyFetcher.shared
     let networkMonitor = NetworkMonitor()
     let coredataManger = CoreDataManager.shared
 
@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let dispatchGroup = DispatchGroup()
         dispatchGroup.enter()
-        currencyManger.setupDatasFromAPI {
+        currencyFetcher.setupDatasFromAPI {
             dispatchGroup.leave()
         }
         dispatchGroup.wait()
