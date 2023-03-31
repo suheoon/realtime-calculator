@@ -8,8 +8,8 @@
 import Foundation
 
 enum ManagerError: Error {
-    case invalidUrl
     case networkingError
+    case invalidUrl
     case invalidResponse
     case invalidStatusCode(Int)
     case dataError
@@ -30,7 +30,7 @@ final class NetworkManager {
     
     private init() {}
     
-    func getCurrency(completion: @escaping (Result<[Currency], Error>) -> Void) {
+    func getCurrency(completion: @escaping (Result<[Currency], ManagerError>) -> Void) {
         let urlString = RequestUrl.currencyRequestUrl
         guard let url = URL(string: urlString) else {
             completion(.failure(ManagerError.invalidUrl))
@@ -40,7 +40,7 @@ final class NetworkManager {
     }
     
     // 네트워크 요청을 하는 공통 모듈
-    private func perfromRequest<T: Decodable>(fromURL url: URL, httpMethod: HttpMethod = .get, completion: @escaping (Result<T, Error>) -> Void) {
+    private func perfromRequest<T: Decodable>(fromURL url: URL, httpMethod: HttpMethod = .get, completion: @escaping (Result<T, ManagerError>) -> Void) {
         
         var request = URLRequest(url: url)
         request.httpMethod = httpMethod.method
@@ -48,23 +48,22 @@ final class NetworkManager {
         let session = URLSession(configuration: .default)
         
         let task = session.dataTask(with: request) { (data, response, error) in
-            
-            if let error = error {
-                completion(.failure(error))
+            if error != nil {
+                completion(.failure(.networkingError))
                 return
             }
             
             guard let response = response as? HTTPURLResponse else {
-                completion(.failure(ManagerError.invalidResponse))
+                completion(.failure(.invalidResponse))
                 return
             }
             if !(200..<300).contains(response.statusCode) {
-                completion(.failure(ManagerError.invalidStatusCode(response.statusCode)))
+                completion(.failure(.invalidStatusCode(response.statusCode)))
                 return
             }
         
             guard let data = data else {
-                completion(.failure(ManagerError.dataError))
+                completion(.failure(.dataError))
                 return
             }
             
@@ -72,7 +71,7 @@ final class NetworkManager {
                 let decodedData = try JSONDecoder().decode(T.self, from: data)
                 completion(.success(decodedData))
             } catch {
-                completion(.failure(ManagerError.parseError))
+                completion(.failure(.parseError))
             }
         }
         task.resume()

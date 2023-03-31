@@ -13,6 +13,8 @@ final class CoreDataManager {
     static let shared = CoreDataManager()
     
     let appDelegate = UIApplication.shared.delegate as? AppDelegate
+    // viewContext : main queue에서 동작함
+    // coredata에 저장하는 데이터가 많다면 UI 업데이트가 block되는 현상이 길어지므로 다른 방법이 필요
     lazy var context = appDelegate?.persistentContainer.viewContext
     
     private init() {}

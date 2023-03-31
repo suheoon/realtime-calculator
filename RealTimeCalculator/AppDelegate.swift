@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let networkMonitor = NetworkMonitor()
         
         // 네트워크 모니터링 시작
-        networkMonitor.startMonitoring()
+//        networkMonitor.startMonitoring()
         
         let dispatchGroup = DispatchGroup()
         dispatchGroup.enter()
@@ -28,7 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         dispatchGroup.wait()
         
         // 환율정보를 받아 온 후 모니터링 종료
-        networkMonitor.stopMonitoring()
+//        networkMonitor.stopMonitoring()
+        
         
         window = UIWindow()
         window?.rootViewController = TabBarViewController()
