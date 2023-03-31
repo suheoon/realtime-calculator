@@ -13,13 +13,13 @@ final class CoreDataManager {
     static let shared = CoreDataManager()
     private init() {}
     
-    let appDelegate = UIApplication.shared.delegate as? AppDelegate
-    
-    lazy var context = appDelegate?.persistentContainer.viewContext
-    
     let modelName: String = "CurrencySaved"
     
     func getCurrencyArrayFromCoreData() -> [CurrencySaved] {
+        
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        lazy var context = appDelegate?.persistentContainer.viewContext
+        
         var savedCurrencyArray: [CurrencySaved] = []
 
         if let context = context {
@@ -42,14 +42,15 @@ final class CoreDataManager {
         return savedCurrencyArray
     }
     
-    func saveCurrency(with currency: Currency, completion: @escaping () -> Void) {
+    func saveCurrency(_ currency: Currency) {
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        lazy var context = appDelegate?.persistentContainer.viewContext
+        
         if let context = context {
-            
             if let entity = NSEntityDescription.entity(forEntityName: self.modelName, in: context) {
-                
                 if let currencySaved = NSManagedObject(entity: entity, insertInto: context) as? CurrencySaved {
                     
-                    currencySaved.saveDate = Date()
+                    currencySaved.savedDate = Date()
                     currencySaved.currencyCode = currency.currencyCode
                     currencySaved.currencyName = currency.currencyName
                     currencySaved.country = currency.country
@@ -65,15 +66,13 @@ final class CoreDataManager {
                     if context.hasChanges {
                         do {
                             try context.save()
-                            completion()
+                            print("success")
                         } catch {
                             print(error)
-                            completion()
                         }
                     }
                 }
             }
         }
-        completion()
     }
 }

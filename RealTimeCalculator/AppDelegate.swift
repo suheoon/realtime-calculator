@@ -13,6 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     let currencyManger = CurrencyManager.shared
     let networkMonitor = NetworkMonitor()
+    let coredataManger = CoreDataManager.shared
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // 네트워크 모니터링 시작

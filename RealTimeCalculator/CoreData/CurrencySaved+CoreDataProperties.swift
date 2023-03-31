@@ -28,7 +28,7 @@ extension CurrencySaved {
     @NSManaged public var changePrice: Double
     @NSManaged public var usDollarRate: Double
     @NSManaged public var currencyUnit: Int32
-    @NSManaged public var saveDate: Date?
+    @NSManaged public var savedDate: Date?
     
     var changeRate: Double {
         return changePrice / basePrice * 100
