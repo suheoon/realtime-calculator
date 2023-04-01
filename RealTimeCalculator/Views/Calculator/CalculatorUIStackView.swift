@@ -216,7 +216,7 @@ final class CalculatorUIStackView: UIStackView {
             let resultLabel: UILabel = {
                 let label = UILabel()
                 label.translatesAutoresizingMaskIntoConstraints = false
-                label.text = "0"
+                label.text = "0.00"
                 label.textColor = .label
                 label.textAlignment = .right
                 label.font = UIFont.Pretendard(.regular, size: 25)

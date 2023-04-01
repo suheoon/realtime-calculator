@@ -177,7 +177,7 @@ final class CalculatorViewController: UIViewController {
         
         calculatorView.working = ""
         workingLabel.text = calculatorView.working
-        fromResultLabel.text = "0"
+        fromResultLabel.text = "0.00"
         toResultLabel.text = "0.00"
     }
 }
@@ -258,7 +258,7 @@ extension CalculatorViewController: ButtonDelegate {
         guard let fromBasePrice = currencyArrays[from].basePrice, let toBasePrice = currencyArrays[to].basePrice, let currencyUnit = currencyArrays[from].currencyUnit else { return }
         
         workingLabel.text = calculatorView.working
-        fromResultLabel.text = String(format: "%.f", result)
+        fromResultLabel.text = String(format: "%.2f", result)
         toResultLabel.text = String(format: "%.2f",result * fromBasePrice / toBasePrice / Double(currencyUnit))
     }
     
@@ -269,7 +269,7 @@ extension CalculatorViewController: ButtonDelegate {
         
         calculatorView.working = ""
         workingLabel.text = calculatorView.working
-        fromResultLabel.text = "0"
+        fromResultLabel.text = "0.00"
         toResultLabel.text = "0.00"
     }
 }
