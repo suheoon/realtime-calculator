@@ -38,12 +38,6 @@ extension CurrencySaved {
         return dict[currencyCode]
     }
     
-    static func currencySavedToCurrency(_ currencySaved: CurrencySaved) -> Currency {
-        return Currency(currencyCode: currencySaved.currencyCode, currencyName: currencySaved.currencyName, country: currencySaved.country,
-                        date: currencySaved.date, time: currencySaved.time, basePrice: currencySaved.basePrice,
-                        change: currencySaved.change, changePrice: currencySaved.changePrice, usDollarRate: currencySaved.usDollarRate, currencyUnit: Int(currencySaved.currencyUnit))
-    }
-    
     func convertToCurrency() -> Currency {
         return Currency(currencyCode: self.currencyCode, currencyName: self.currencyName, country: self.country,
                         date: self.date, time: self.time, basePrice: self.basePrice,
