@@ -27,7 +27,7 @@ final class ExchangeRateCollectionViewCell: UICollectionViewCell {
         return stackView
     }()
     
-    let horiziontalStackVeiw: UIStackView = {
+    let currencyNamehoriziontalStackVeiw: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
@@ -37,7 +37,7 @@ final class ExchangeRateCollectionViewCell: UICollectionViewCell {
         return stackView
     }()
     
-    let verticalStackVeiw1: UIStackView = {
+    let currencyNameVerticalStackVeiw: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
@@ -48,7 +48,7 @@ final class ExchangeRateCollectionViewCell: UICollectionViewCell {
         return stackView
     }()
     
-    let verticalStackVeiw2: UIStackView = {
+    let priceChangeVerticalStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
@@ -150,18 +150,18 @@ final class ExchangeRateCollectionViewCell: UICollectionViewCell {
     }
     
     private func configureUI() {
-        verticalStackVeiw1.addArrangedSubview(currencyCodeLabel)
-        verticalStackVeiw1.addArrangedSubview(coutnryLabel)
+        currencyNameVerticalStackVeiw.addArrangedSubview(currencyCodeLabel)
+        currencyNameVerticalStackVeiw.addArrangedSubview(coutnryLabel)
     
-        horiziontalStackVeiw.addArrangedSubview(nationalFlag)
-        horiziontalStackVeiw.addArrangedSubview(verticalStackVeiw1)
+        currencyNamehoriziontalStackVeiw.addArrangedSubview(nationalFlag)
+        currencyNamehoriziontalStackVeiw.addArrangedSubview(currencyNameVerticalStackVeiw)
         
-        verticalStackVeiw2.addArrangedSubview(changePriceLabel)
-        verticalStackVeiw2.addArrangedSubview(changeRateLabel)
+        priceChangeVerticalStackView.addArrangedSubview(changePriceLabel)
+        priceChangeVerticalStackView.addArrangedSubview(changeRateLabel)
         
-        containerStackVeiw.addArrangedSubview(horiziontalStackVeiw)
+        containerStackVeiw.addArrangedSubview(currencyNamehoriziontalStackVeiw)
         containerStackVeiw.addArrangedSubview(basePriceLabel)
-        containerStackVeiw.addArrangedSubview(verticalStackVeiw2)
+        containerStackVeiw.addArrangedSubview(priceChangeVerticalStackView)
     }
     
     private func configureUIWithData() {
@@ -200,7 +200,7 @@ final class ExchangeRateCollectionViewCell: UICollectionViewCell {
     }
     
     private func applyConstraints() {
-        horiziontalStackVeiw.widthAnchor.constraint(equalToConstant: Screen.screenWidth / 2).isActive = true
+        currencyNamehoriziontalStackVeiw.widthAnchor.constraint(equalToConstant: Screen.screenWidth / 2).isActive = true
         
         let containerStackVeiwConstraints = [
             containerStackVeiw.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
