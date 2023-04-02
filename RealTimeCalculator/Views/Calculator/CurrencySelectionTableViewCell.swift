@@ -26,7 +26,7 @@ class CurrencySelectionTableViewCell: UITableViewCell {
         return stackView
     }()
     
-    let horiziontalStackVeiw: UIStackView = {
+    let countryHoriziontalStackVeiw: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
@@ -78,13 +78,13 @@ class CurrencySelectionTableViewCell: UITableViewCell {
         let spaceView1 = UIView()
         let spaceView2 = UIView()
         
-        horiziontalStackVeiw.addArrangedSubview(nationalFlag)
-        horiziontalStackVeiw.addArrangedSubview(coutnryLabel)
-        horiziontalStackVeiw.addArrangedSubview(spaceView1)
+        countryHoriziontalStackVeiw.addArrangedSubview(nationalFlag)
+        countryHoriziontalStackVeiw.addArrangedSubview(coutnryLabel)
+        countryHoriziontalStackVeiw.addArrangedSubview(spaceView1)
         
         spaceView1.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         
-        containerStackVeiw.addArrangedSubview(horiziontalStackVeiw)
+        containerStackVeiw.addArrangedSubview(countryHoriziontalStackVeiw)
         containerStackVeiw.addArrangedSubview(currencyCodeLabel)
         containerStackVeiw.addArrangedSubview(spaceView2)
         
@@ -92,7 +92,7 @@ class CurrencySelectionTableViewCell: UITableViewCell {
     }
     
     private func applyConstraints() {
-        horiziontalStackVeiw.widthAnchor.constraint(equalToConstant: Screen.screenWidth / 5 * 4).isActive = true
+        countryHoriziontalStackVeiw.widthAnchor.constraint(equalToConstant: Screen.screenWidth / 5 * 4).isActive = true
         
         let containerStackVeiwConstraints = [
             containerStackVeiw.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
