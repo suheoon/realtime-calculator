@@ -7,12 +7,6 @@
 
 import UIKit
 
-protocol ButtonDelegate: AnyObject {
-    func selectionButtonTapped(_ sender: UIButton)
-    func tapCalculatorButton(_ sender: UIButton)
-    func clearAll(_ sender: UIButton)
-}
-
 enum CalculatorButtonType: Int {
     case zero, dot, delete, plus
     case one, two, three, minus
@@ -23,7 +17,6 @@ enum CalculatorButtonType: Int {
 final class CalculatorUIStackView: UIStackView {    
     var working: String = ""
     
-    weak var delegate: ButtonDelegate?
     weak var calculatorViewController: CalculatorViewController?
     
     override init(frame: CGRect) {

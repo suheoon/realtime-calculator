@@ -22,7 +22,6 @@ final class ExchangeRateViewController: UIViewController {
         return controller
     }()
     
-    // ExchangeRateViewController가 생성 된 후 변수 접근시 초기화 (self.compositionalLayout)
     lazy var exchangeRatecollectionVeiw: UICollectionView = {
         let collectionView =  UICollectionView(frame: .zero, collectionViewLayout: self.compositionalLayout)
         collectionView.isScrollEnabled = true
