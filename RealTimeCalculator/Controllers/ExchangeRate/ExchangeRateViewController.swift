@@ -113,7 +113,6 @@ final class ExchangeRateViewController: UIViewController {
         searchController.searchBar.delegate = self
         searchController.searchBar.tintColor = .label
         self.searchController.hidesNavigationBarDuringPresentation = false
-        
     }
     
 }

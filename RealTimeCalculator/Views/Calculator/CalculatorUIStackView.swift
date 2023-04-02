@@ -24,6 +24,7 @@ final class CalculatorUIStackView: UIStackView {
     var working: String = ""
     
     weak var delegate: ButtonDelegate?
+    weak var calculatorViewController: CalculatorViewController?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -97,8 +98,6 @@ final class CalculatorUIStackView: UIStackView {
                 let image = UIImage(systemName: "delete.left")?.withRenderingMode(.alwaysTemplate)
                 button.setImage(image, for: .normal)
                 button.imageView?.tintColor = .label
-                let longPress = UILongPressGestureRecognizer(target: self, action: #selector(clearAll(_:)))
-                button.addGestureRecognizer(longPress)
             } else {
                 button.setTitle(title1[i], for: .normal)
                 button.titleLabel?.font = UIFont.Pretendard(.medium, size: 18)
@@ -107,7 +106,7 @@ final class CalculatorUIStackView: UIStackView {
             button.tag = i
             button.translatesAutoresizingMaskIntoConstraints = false
             button.widthAnchor.constraint(equalToConstant: Screen.screenWidth / 4).isActive = true
-            button.addTarget(self, action: #selector(tapCalculatorButton(_:)), for: .touchUpInside)
+            button.addTarget(calculatorViewController.self, action: #selector(calculatorViewController?.tapCalculatorButton(_:)), for: .touchUpInside)
             horizonalStackVeiw1.addArrangedSubview(button)
         }
         
@@ -119,7 +118,7 @@ final class CalculatorUIStackView: UIStackView {
             button.tag = i + 4
             button.translatesAutoresizingMaskIntoConstraints = false
             button.widthAnchor.constraint(equalToConstant: Screen.screenWidth / 4).isActive = true
-            button.addTarget(self, action: #selector(tapCalculatorButton(_:)), for: .touchUpInside)
+            button.addTarget(calculatorViewController.self, action: #selector(calculatorViewController?.tapCalculatorButton(_:)), for: .touchUpInside)
             horizonalStacVeiw2.addArrangedSubview(button)
         }
         
@@ -131,7 +130,7 @@ final class CalculatorUIStackView: UIStackView {
             button.tag = i + 8
             button.translatesAutoresizingMaskIntoConstraints = false
             button.widthAnchor.constraint(equalToConstant: Screen.screenWidth / 4).isActive = true
-            button.addTarget(self, action: #selector(tapCalculatorButton(_:)), for: .touchUpInside)
+            button.addTarget(calculatorViewController.self, action: #selector(calculatorViewController?.tapCalculatorButton(_:)), for: .touchUpInside)
             horizonalStacVeiw3.addArrangedSubview(button)
         }
         
@@ -143,7 +142,7 @@ final class CalculatorUIStackView: UIStackView {
             button.tag = i + 12
             button.translatesAutoresizingMaskIntoConstraints = false
             button.widthAnchor.constraint(equalToConstant: Screen.screenWidth / 4).isActive = true
-            button.addTarget(self, action: #selector(tapCalculatorButton(_:)), for: .touchUpInside)
+            button.addTarget(calculatorViewController.self, action: #selector(calculatorViewController?.tapCalculatorButton(_:)), for: .touchUpInside)
             horizonalStacVeiw4.addArrangedSubview(button)
         }
         
@@ -183,7 +182,7 @@ final class CalculatorUIStackView: UIStackView {
                 button.setPreferredSymbolConfiguration(.init(pointSize: 13), forImageIn: .normal)
                 button.semanticContentAttribute = .forceRightToLeft
                 button.tag = 16
-                button.addTarget(self, action: #selector(selectionButtonTapped(_:)), for: .touchUpInside)
+                button.addTarget(calculatorViewController.self, action: #selector(calculatorViewController?.selectionButtonTapped(_:)), for: .touchUpInside)
                 return button
             }()
             
@@ -284,7 +283,7 @@ final class CalculatorUIStackView: UIStackView {
                 button.setPreferredSymbolConfiguration(.init(pointSize: 13), forImageIn: .normal)
                 button.semanticContentAttribute = .forceRightToLeft
                 button.tag = 19
-                button.addTarget(self, action: #selector(selectionButtonTapped(_:)), for: .touchUpInside)
+                button.addTarget(calculatorViewController.self, action: #selector(calculatorViewController?.selectionButtonTapped(_:)), for: .touchUpInside)
                 return button
             }()
             
@@ -327,17 +326,4 @@ final class CalculatorUIStackView: UIStackView {
         horizontalStackView.addArrangedSubview(resultDisplayView)
         self.addArrangedSubview(horizontalStackView)
     }
-    
-    @objc func selectionButtonTapped(_ sender: UIButton) {
-        delegate?.selectionButtonTapped(sender)
-    }
-    
-    @objc func tapCalculatorButton(_ sender: UIButton) {
-        delegate?.tapCalculatorButton(sender)
-    }
-    
-    @objc func clearAll(_ sender: UIButton) {
-        delegate?.clearAll(sender)
-    }
-    
 }

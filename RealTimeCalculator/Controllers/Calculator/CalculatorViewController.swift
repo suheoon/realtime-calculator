@@ -27,16 +27,11 @@ final class CalculatorViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        calculatorView.delegate = self
         view.backgroundColor = .systemBackground
         view.addSubview(calculatorView)
-        
+        configureCalculatorView()
         configureNavBar()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        setupLayout()
+        applyConstraints()
         setupData()
     }
     
@@ -44,7 +39,7 @@ final class CalculatorViewController: UIViewController {
         currencyArrays = currencyFetcher.getCurrencyArraysFromAPI()
     }
     
-    private func setupLayout() {
+    private func applyConstraints() {
         let calculatorViewConstraints  = [
             calculatorView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             calculatorView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
@@ -52,6 +47,12 @@ final class CalculatorViewController: UIViewController {
             calculatorView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ]
         NSLayoutConstraint.activate(calculatorViewConstraints)
+    }
+    
+    private func configureCalculatorView() {
+        calculatorView.calculatorViewController = self
+        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(self.clearAll(_:)))
+        calculatorView.viewWithTag(2)?.addGestureRecognizer(longPress)
     }
     
     private func configureNavBar() {
@@ -180,11 +181,8 @@ final class CalculatorViewController: UIViewController {
         fromResultLabel.text = "0.00"
         toResultLabel.text = "0.00"
     }
-}
-
-// custom delegate패턴
-extension CalculatorViewController: ButtonDelegate {
-    func selectionButtonTapped(_ sender: UIButton) {
+    
+    @objc func selectionButtonTapped(_ sender: UIButton) {
         let currencySelectionViewController = CurrencySelectionViewController()
 
         if (sender.tag == 16) {
@@ -209,7 +207,7 @@ extension CalculatorViewController: ButtonDelegate {
         self.navigationController?.pushViewController(currencySelectionViewController, animated: false)
     }
     
-    func tapCalculatorButton(_ sender: UIButton) {
+    @objc func tapCalculatorButton(_ sender: UIButton) {
         let calculatorButtonType = CalculatorButtonType(rawValue: sender.tag)
         let workingLabel = calculatorView.viewWithTag(17) as! UILabel
         let fromResultLabel = calculatorView.viewWithTag(18) as! UILabel
@@ -261,8 +259,8 @@ extension CalculatorViewController: ButtonDelegate {
         fromResultLabel.text = String(format: "%.2f", result)
         toResultLabel.text = String(format: "%.2f",result * fromBasePrice / toBasePrice / Double(currencyUnit))
     }
-    
-    func clearAll(_ sender: UIButton) {
+
+    @objc func clearAll(_ sender: UIButton) {
         let workingLabel = calculatorView.viewWithTag(17) as! UILabel
         let fromResultLabel = calculatorView.viewWithTag(18) as! UILabel
         let toResultLabel = calculatorView.viewWithTag(20) as! UILabel
