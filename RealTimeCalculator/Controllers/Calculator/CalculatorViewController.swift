@@ -15,6 +15,7 @@ final class CalculatorViewController: UIViewController {
     
     let currencyFetcher = CurrencyFetcher.shared
     var currencyArrays: [Currency] = []
+    var buttonHeight: CGFloat?
     
     private lazy var calculatorView = {
         let calculatorView = CalculatorUIStackView(frame: .zero)
@@ -23,16 +24,14 @@ final class CalculatorViewController: UIViewController {
         return calculatorView
     }()
     
-    var buttonHeight: CGFloat?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         view.addSubview(calculatorView)
-        configureCalculatorView()
+        setupData()
+        calculatorView.delegate = self
         configureNavBar()
         applyConstraints()
-        setupData()
     }
     
     private func setupData() {
@@ -47,12 +46,6 @@ final class CalculatorViewController: UIViewController {
             calculatorView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ]
         NSLayoutConstraint.activate(calculatorViewConstraints)
-    }
-    
-    private func configureCalculatorView() {
-        calculatorView.calculatorViewController = self
-        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(self.clearAll(_:)))
-        calculatorView.viewWithTag(2)?.addGestureRecognizer(longPress)
     }
     
     private func configureNavBar() {
@@ -181,8 +174,10 @@ final class CalculatorViewController: UIViewController {
         fromResultLabel.text = "0.00"
         toResultLabel.text = "0.00"
     }
-    
-    @objc func selectionButtonTapped(_ sender: UIButton) {
+}
+
+extension CalculatorViewController: CalculatorUIStackViewDelegate {
+    func selectionButtonTapped(_ sender: UIButton) {
         let currencySelectionViewController = CurrencySelectionViewController()
 
         if (sender.tag == 16) {
@@ -207,7 +202,7 @@ final class CalculatorViewController: UIViewController {
         self.navigationController?.pushViewController(currencySelectionViewController, animated: false)
     }
     
-    @objc func tapCalculatorButton(_ sender: UIButton) {
+    func tapCalculatorButton(_ sender: UIButton) {
         let calculatorButtonType = CalculatorButtonType(rawValue: sender.tag)
         let workingLabel = calculatorView.viewWithTag(17) as! UILabel
         let fromResultLabel = calculatorView.viewWithTag(18) as! UILabel
@@ -260,7 +255,7 @@ final class CalculatorViewController: UIViewController {
         toResultLabel.text = String(format: "%.2f",result * fromBasePrice / toBasePrice / Double(currencyUnit))
     }
 
-    @objc func clearAll(_ sender: UIButton) {
+    func clearAll(_ sender: UIButton) {
         let workingLabel = calculatorView.viewWithTag(17) as! UILabel
         let fromResultLabel = calculatorView.viewWithTag(18) as! UILabel
         let toResultLabel = calculatorView.viewWithTag(20) as! UILabel
