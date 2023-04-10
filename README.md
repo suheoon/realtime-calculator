@@ -1,4 +1,4 @@
-# 💸 환율 계산기
+# 💶 환율 계산기
 
 
 <img src = "https://user-images.githubusercontent.com/83093525/230820741-898995de-16ca-4f6a-9dbb-c291e650d2d6.jpg" width="50%" height="50%">
