@@ -10,5 +10,4 @@
 - UIKit
 - Swift
 - MVC
-- No-Storyboard
 
