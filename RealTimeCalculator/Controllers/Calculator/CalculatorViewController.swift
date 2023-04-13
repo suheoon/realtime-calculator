@@ -165,14 +165,14 @@ final class CalculatorViewController: UIViewController {
     }
     
     private func clear() {
-        let workingLabel = calculatorView.viewWithTag(17) as! UILabel
-        let fromResultLabel = calculatorView.viewWithTag(18) as! UILabel
-        let toResultLabel = calculatorView.viewWithTag(20) as! UILabel
+        let workingLabel = calculatorView.viewWithTag(17) as? UILabel
+        let fromResultLabel = calculatorView.viewWithTag(18) as? UILabel
+        let toResultLabel = calculatorView.viewWithTag(20) as? UILabel
         
         calculatorView.working = ""
-        workingLabel.text = calculatorView.working
-        fromResultLabel.text = "0.00"
-        toResultLabel.text = "0.00"
+        workingLabel?.text = calculatorView.working
+        fromResultLabel?.text = "0.00"
+        toResultLabel?.text = "0.00"
     }
 }
 
