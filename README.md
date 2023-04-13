@@ -11,7 +11,4 @@
 - Swift
 - MVC
 - No-Storyboard
-- GCD
-- URLSession
-- CoreData
 
