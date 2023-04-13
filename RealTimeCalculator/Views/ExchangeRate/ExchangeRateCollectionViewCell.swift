@@ -60,7 +60,7 @@ final class ExchangeRateCollectionViewCell: UICollectionViewCell {
     }()
     
     let nationalFlag: UIImageView = {
-        let imageView = UIImageView(frame: CGRectMake(0, 0, 30, 20))
+        let imageView = UIImageView()
         imageView.backgroundColor = .yellow
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -140,15 +140,6 @@ final class ExchangeRateCollectionViewCell: UICollectionViewCell {
         separatorView.frame = CGRect(x: 0, y: contentView.bounds.maxY - 1, width: contentView.bounds.width, height: 1)
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        nationalFlag.image = nil
-        currencyCodeLabel.text = nil
-        basePriceLabel.text = nil
-        changeRateLabel.text = nil
-        changePriceLabel.text = nil
-    }
-    
     private func configureUI() {
         currencyNameVerticalStackVeiw.addArrangedSubview(currencyCodeLabel)
         currencyNameVerticalStackVeiw.addArrangedSubview(coutnryLabel)
@@ -200,6 +191,9 @@ final class ExchangeRateCollectionViewCell: UICollectionViewCell {
     }
     
     private func applyConstraints() {
+        nationalFlag.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        nationalFlag.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        
         currencyNamehoriziontalStackVeiw.widthAnchor.constraint(equalToConstant: Screen.screenWidth / 2).isActive = true
         
         let containerStackVeiwConstraints = [
@@ -207,23 +201,12 @@ final class ExchangeRateCollectionViewCell: UICollectionViewCell {
             containerStackVeiw.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
             containerStackVeiw.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
         ]
+        
         NSLayoutConstraint.activate(containerStackVeiwConstraints)
     }
     
     private func setImage(_ name: String) {
-        let cacheKey = NSString(string: name)
-        
-        if let cachedImage = ImageCacheManager.shared.object(forKey: cacheKey) {
-            nationalFlag.image = cachedImage
-            return
-        }
-        
-        guard let svgImage = UIImage(named: name)?.resize(targetSize: nationalFlag.frame.size) else { return }
-        let renderer = UIGraphicsImageRenderer(size: svgImage.size)
-        let image = renderer.image { context in
-            svgImage.draw(in: CGRect(origin: .zero, size: svgImage.size))
-        }
-        ImageCacheManager.shared.setObject(image, forKey: cacheKey)
+        let image = UIImage(named: name)
         nationalFlag.image = image
     }
 }

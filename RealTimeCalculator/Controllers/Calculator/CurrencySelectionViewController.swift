@@ -122,7 +122,6 @@ extension CurrencySelectionViewController: UISearchBarDelegate {
         searchTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { [weak self] _ in
             self?.search(for: searchText)
         })
-        
     }
     
     func search(for searchText: String) {

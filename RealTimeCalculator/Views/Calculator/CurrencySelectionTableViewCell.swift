@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CurrencySelectionTableViewCell: UITableViewCell {
+final class CurrencySelectionTableViewCell: UITableViewCell {
     
     var currency: Currency? {
         didSet {
@@ -38,7 +38,7 @@ class CurrencySelectionTableViewCell: UITableViewCell {
     }()
     
     let nationalFlag: UIImageView = {
-        let imageView = UIImageView(frame: CGRectMake(0, 0, 30, 20))
+        let imageView = UIImageView()
         imageView.backgroundColor = .yellow
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -94,6 +94,9 @@ class CurrencySelectionTableViewCell: UITableViewCell {
     private func applyConstraints() {
         countryHoriziontalStackVeiw.widthAnchor.constraint(equalToConstant: Screen.screenWidth / 5 * 4).isActive = true
         
+        nationalFlag.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        nationalFlag.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        
         let containerStackVeiwConstraints = [
             containerStackVeiw.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             containerStackVeiw.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
@@ -115,25 +118,9 @@ class CurrencySelectionTableViewCell: UITableViewCell {
     }
     
     private func setImage(_ name: String) {
-        let cacheKey = NSString(string: name)
-        
-        if let cachedImage = ImageCacheManager.shared.object(forKey: cacheKey) {
-            nationalFlag.image = cachedImage
-            return
-        }
-        
-        guard let svgImage = UIImage(named: name)?.resize(targetSize: nationalFlag.frame.size) else { return }
-        let renderer = UIGraphicsImageRenderer(size: svgImage.size)
-        let image = renderer.image { context in
-            svgImage.draw(in: CGRect(origin: .zero, size: svgImage.size))
-        }
-        ImageCacheManager.shared.setObject(image, forKey: cacheKey)
+        let image = UIImage(named: name)
         nationalFlag.image = image
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        nationalFlag.image = nil
-    }
     
 }

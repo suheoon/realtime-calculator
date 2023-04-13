@@ -14,17 +14,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        let currencyFetcher = CurrencyFetcher.shared
-        
-        let dispatchGroup = DispatchGroup()
-        dispatchGroup.enter()
-        currencyFetcher.setupDatasFromAPI {
-            dispatchGroup.leave()
-        }
-        dispatchGroup.wait()
-        
         window = UIWindow()
-        window?.rootViewController = TabBarViewController()
+        window?.rootViewController = SplashViewController()
         window?.makeKeyAndVisible()
         
         return true

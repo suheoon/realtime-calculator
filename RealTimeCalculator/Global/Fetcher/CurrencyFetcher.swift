@@ -14,7 +14,7 @@ final class CurrencyFetcher {
     private var currencyArrays: [Currency] = []
     private let networkManager = NetworkManager.shared
     private let coreDataManager = CoreDataManager.shared
-
+    
     private init() {
         // api로 받아올 수 없는 우리나라 환율 정보
         let koreanCurrency: Currency = Currency(currencyCode: "KRW", country: "대한민국", basePrice: 1,
@@ -27,13 +27,13 @@ final class CurrencyFetcher {
     }
     
     func setupDatasFromAPI(completion: @escaping () -> Void) {
-        networkManager.getCurrency { result in
+        networkManager.getCurrency {[weak self] result in
             switch result {
             case .success(let currencyDatas):
-                self.currencyArrays.append(contentsOf: currencyDatas)
+                self?.currencyArrays.append(contentsOf: currencyDatas)
                 DispatchQueue.main.async {
                     for data in currencyDatas {
-                        self.coreDataManager.saveCurrencyToCoreData(data)
+                        self?.coreDataManager.saveCurrencyToCoreData(data)
                     }
                 }
                 completion()
@@ -41,16 +41,16 @@ final class CurrencyFetcher {
                 switch error {
                 case .networkingError:
                     DispatchQueue.main.async {
-                        let savedCurrencyArray : [Currency] = self.coreDataManager.getCurrencyArrayFromCoreData().map({$0.convertToCurrency()})
-                        if savedCurrencyArray.isEmpty {
-                            self.showExitAlert()
+                        guard let savedCurrencyArray : [Currency] = self?.coreDataManager.getCurrencyArrayFromCoreData().map({$0.convertToCurrency()}) else {
+                            self?.showExitAlert()
+                            return
                         }
-                        self.currencyArrays.append(contentsOf: savedCurrencyArray)
-                        self.showNetworkErrorAlert()
+                        self?.currencyArrays.append(contentsOf: savedCurrencyArray)
+                        self?.showNetworkErrorAlert()
                     }
                 default:
                     DispatchQueue.main.async {
-                        self.showAppErrorAlert()
+                        self?.showAppErrorAlert()
                     }
                 }
                 completion()
@@ -65,12 +65,12 @@ final class CurrencyFetcher {
         alertController.addAction(okAction)
         UIApplication.shared.windows.first?.rootViewController?.present(alertController, animated: true, completion: nil)
     }
-     
+    
     // 네트워크 연결 오류가 발생했고 CoreData에 저장된 데이터도 없을 경우
     private func showExitAlert() {
         let alertController = UIAlertController(title: "네트워크 연결이 원활하지 않습니다", message: "환율 정보를 위해 네트워크 상태를 확인해 주세요 확인을 누르면 앱이 종료됩니다.", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "확인", style: .default) { _ in
-           exit(0)
+            exit(0)
         }
         alertController.addAction(okAction)
         UIApplication.shared.windows.first?.rootViewController?.present(alertController, animated: true, completion: nil)

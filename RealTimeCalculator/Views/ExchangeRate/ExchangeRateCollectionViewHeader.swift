@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ExchangeRateCollectionViewHeader: UIStackView {
+final class ExchangeRateCollectionViewHeader: UIStackView {
 
     let currencyNameLabel: UILabel = {
         let label = UILabel()
